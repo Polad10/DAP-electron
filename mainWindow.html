@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DAP: Home</title>
+
+    <!-- Fomantic scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.4/dist/semantic.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.4/dist/semantic.min.js"></script>
+
+    <!-- custom CSS script-->
+    <link rel="stylesheet" href="./mainWindow.css" />
+  </head>
+
+  <body>
+    <div id="navbar" class="ui secondary pointing menu">
+      <a class="item">
+        Home
+      </a>
+      <a id="patient_menu" class="item">
+        Patients
+        <!-- <i class="dropdown icon"></i> -->
+      </a>
+      <a id="treatment_menu" class="item active">
+        Treatments
+      </a>
+      <a id="visit_menu" class="item">
+        Visits
+      </a>
+      <a id="payment_menu" class="item">
+        Payments
+      </a>
+      <div class="right menu">
+        <a id="scheduler_menu" class="ui item">
+          Scheduler
+        </a>
+      </div>
+    </div>
+
+    <div class="container"></div>
+
+    <!-- custom script -->
+    <script src="./mainWindow.js"></script>
+  </body>
+</html>

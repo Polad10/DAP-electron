@@ -1,0 +1,14 @@
+{
+  "name": "dap",
+  "version": "1.0.0",
+  "description": "Dentist Assistant Program",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Amelia Kezia G., Polad Samadzade",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^8.1.1"
+  }
+}
