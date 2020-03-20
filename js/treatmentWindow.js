@@ -1,0 +1,1 @@
+$("#treatment_dropdown").dropdown({});

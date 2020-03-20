@@ -1,6 +1,46 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script> -->
+  </head>
   <body>
-    <div class="ui label"><i class="mail icon"></i> Payment Page</div>
+    <div class="ui center aligned basic segment">
+      <div class="ui two column very relaxed stackable grid">
+        <div class="column">
+          <!-- <div class="ui left icon action input">
+            <i class="search icon"></i>
+            <input type="text" placeholder="Payment #" />
+            <div class="ui blue submit button">Search</div>
+          </div> -->
+          <div class="ui right action left icon input">
+            <i class="search icon"></i>
+            <input type="text" placeholder="Search" />
+            <div
+              id="payment_dropdown"
+              class="ui basic floating blue dropdown button"
+            >
+              <div class="text">All</div>
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <div class="item">1</div>
+                <div class="item">2</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui teal labeled icon button">
+            Create New Payment
+            <i class="add icon"></i>
+          </div>
+        </div>
+      </div>
+      <div class="ui vertical divider">
+        or
+      </div>
+    </div>
+
+    <!-- custom script -->
+    <script src="./js/paymentWindow.js"></script>
   </body>
 </html>

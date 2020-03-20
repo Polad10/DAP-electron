@@ -1,0 +1,1 @@
+$("#payment_dropdown").dropdown({});
