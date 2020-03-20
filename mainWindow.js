@@ -10,12 +10,7 @@ function handleNavClick(e) {
   $("a.item.active").removeClass("active");
   $(this).addClass("active");
 
-  // get the href
+  // get the href and load it
   var href = $(this).attr("href");
-  if (firstLoad) {
-    console.log("yes");
-    // $("#content").empty();
-    firstLoad = false;
-  }
   $("#content").load(href, function() {});
 }
