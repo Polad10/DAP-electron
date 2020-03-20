@@ -1,4 +1,7 @@
-let firstLoad = true;
+//load homeWindow when loaded
+$(document).ready(function() {
+  $("#content").load("./pages/homeWindow.html", function() {});
+});
 
 $("a.item").on("click", handleNavClick);
 
