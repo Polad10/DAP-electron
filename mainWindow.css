@@ -9,3 +9,7 @@ a.item:hover {
 .bt-0 {
   border-top: 0px !important;
 }
+
+.pb-0 {
+  padding-bottom: 0px !important;
+}
