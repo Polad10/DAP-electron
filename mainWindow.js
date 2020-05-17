@@ -1,6 +1,6 @@
 //load homeWindow when loaded
-$(document).ready(function() {
-  $("#content").load("./pages/patientWindow.html", function() {});
+$(document).ready(function () {
+  $("#content").load("./pages/homeWindow.html", function () {});
 });
 
 $("a.item").on("click", handleNavClick);
@@ -15,5 +15,5 @@ function handleNavClick(e) {
 
   // get the href and load it
   var href = $(this).attr("href");
-  $("#content").load(href, function() {});
+  $("#content").load(href, function () {});
 }
