@@ -1,0 +1,55 @@
+<!-- Modal for Add Appointment -->
+<div id="appointment_modal" class="ui modal">
+  <div class="header">
+    Add an Appointment
+  </div>
+  <div class="content">
+    <form class="ui form">
+      <div class="field">
+        <label>Patient Name</label>
+        <div id="patient_dropdown" class="ui fluid search selection dropdown">
+          <input type="hidden" name="patient" />
+          <i class="dropdown icon"></i>
+          <div class="default text">Select Patient</div>
+          <div class="menu">
+            <div class="item">Amelia</div>
+            <div class="item">Polad</div>
+            <div class="item">Polad's Mom</div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Add appointment for:</label>
+        <div id="treatment_dropdown" class="ui fluid search selection dropdown">
+          <input type="hidden" name="treatment" value="0" />
+          <i class="dropdown icon"></i>
+          <div class="default text">Select Treatment</div>
+          <div class="menu">
+            <div class="item" data-value="0">No Treatment</div>
+            <div class="item">Treatment 1</div>
+            <div class="item">Treatment 2</div>
+            <div class="item">Treatment 3</div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Date</label>
+        <div id="appointment_calendar" class="ui calendar">
+          <div class="ui input left icon">
+            <i class="calendar icon"></i>
+            <input type="text" placeholder="Choose the date" />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="actions">
+    <div class="ui black deny button">
+      Nope
+    </div>
+    <div class="ui positive right labeled icon button">
+      Create
+      <i class="checkmark icon"></i>
+    </div>
+  </div>
+</div>
