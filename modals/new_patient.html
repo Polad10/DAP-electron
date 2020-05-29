@@ -3,17 +3,17 @@
         New Patient
     </div>
     <div class="content">
-        <div id="new_patient_form" class="ui form">
+        <form id="new_patient_form" class="ui form">
             <div class="equal width fields">
-                <div class="field">
+                <div class="required field">
                     <label>First Name</label>
-                    <input type="text" placeholder="First Name">
+                    <input name="first_name" type="text" placeholder="First Name">
                 </div>
             </div>
             <div class="equal width fields">
-                <div class="field">
+                <div class="required field">
                     <label>Last Name</label>
-                    <input type="text" placeholder="Last Name">
+                    <input name="last_name" type="text" placeholder="Last Name">
                 </div>
             </div>
             <div class="equal width fields">
@@ -22,7 +22,7 @@
                     <div id="dob_calendar" class="ui calendar">
                         <div class="ui input left icon">
                             <i class="calendar alternate outline icon"></i>
-                            <input type="text" placeholder="Date of Birth">
+                            <input name="dob" type="text" placeholder="Date of Birth">
                         </div>
                     </div>
                 </div>
@@ -30,12 +30,14 @@
             <div class="equal width fields">
                 <div class="field">
                     <label>Phone Number</label>
-                    <input type="text" placeholder="Phone Number">
+                    <input name="phone_nr" type="text" placeholder="Phone Number">
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     <div class="actions">
-        <div class="ui positive button">Create</div>
+        <button class="ui positive button" type="submit" form="new_patient_form">Create</button>
     </div>
 </div>
+
+<script src="./js/new_patient.js"></script>
