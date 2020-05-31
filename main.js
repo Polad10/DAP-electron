@@ -13,7 +13,7 @@ let mainWindow;
 //check if app is ready
 app.on("ready", function() {
   //create new window
-  mainWindow = new BrowserWindow({ show: false });
+  mainWindow = new BrowserWindow({ show: false, webPreferences: {nodeIntegration: true}});
   //load html into window
   mainWindow.loadURL("file://" + __dirname + "/mainWindow.html");
 
