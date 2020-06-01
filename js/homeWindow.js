@@ -1,7 +1,5 @@
 $("#AddAppointment_btn").click(function () {});
 
-$("#new_appointment_btn").on("click", handleAddAppointmentBtnClick);
-
 function handleAddAppointmentBtnClick() {
   $("#modal_content").load("./modals/new_appointment.html", () => {
     $("#appointment_modal").modal("show");
@@ -18,22 +16,16 @@ function handleAddAppointmentBtnClick() {
   });
 }
 
-$("#appointment_table tbody tr").on("click", handleAppointmentTableClick);
-
 function handleAppointmentTableClick() {
   let id = $(this).data("id");
   $("#content").load("./pages/patientDetails.html", function () {});
   console.log(id);
 }
 
-$("#payment_table tbody tr").on("click", handlePaymentTableClick);
-
 function handlePaymentTableClick() {
   let id = $(this).data("id");
   console.log(id);
 }
-
-$("#visit_table tbody tr").on("click", handleVisitTableClick);
 
 function handleVisitTableClick() {
   let id = $(this).data("id");
@@ -45,6 +37,8 @@ function initialize()
   initializePaymentTable();
   initializeAppointmentTable();
   initializeVisitTable();
+  
+  $("#new_appointment_btn").on("click", handleAddAppointmentBtnClick);
 }
 
 function initializePaymentTable()
@@ -67,6 +61,8 @@ function initializePaymentTable()
           .append($('<td>').text(`${r.amount}`))
         )
     }
+
+    $('#payment_table > tbody').on('click', 'tr', handlePaymentTableClick);
   });
 }
 
@@ -91,6 +87,8 @@ function initializeAppointmentTable()
           .append($('<td>').text(`${r.time}`))
         )
     }
+
+    $('#appointment_table tbody').on('click', 'tr', handleAppointmentTableClick);
   });
 }
 
@@ -114,6 +112,8 @@ function initializeVisitTable()
           .append($('<td>').text(`${r.date} ${r.time}`))
         )
     }
+
+    $('#visit_table tbody').on('click', 'tr', handleVisitTableClick);
   });
 }
 
