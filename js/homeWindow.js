@@ -22,6 +22,7 @@ $("#appointment_table tbody tr").on("click", handleAppointmentTableClick);
 
 function handleAppointmentTableClick() {
   let id = $(this).data("id");
+  $("#content").load("./pages/patientDetails.html", function () {});
   console.log(id);
 }
 

@@ -13,3 +13,26 @@ a.item:hover {
 .pb-0 {
   padding-bottom: 0px !important;
 }
+
+.p-0 {
+  padding: 0px !important;
+}
+
+.gray {
+  background: #fafafa !important;
+}
+
+.white {
+  background: #ffffff !important;
+}
+
+/* PatientDetails */
+.info_block::after {
+  content: "";
+  top: 8%;
+  bottom: 8%;
+  left: 100%;
+  width: 1px;
+  background: #dddddd;
+  position: absolute;
+}
