@@ -2,7 +2,12 @@
 <html>
   <head>
     <title>DAP: Home</title>
-    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script>
+      if (typeof module === "object") {
+        window.module = module;
+        module = undefined;
+      }
+    </script>
 
     <!-- Fomantic scripts -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
@@ -12,12 +17,15 @@
       href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.4/dist/semantic.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.4/dist/semantic.min.js"></script>
-    
-    <script>if (window.module) module = window.module;</script>
-    
+
+    <script>
+      if (window.module) module = window.module;
+    </script>
+
     <!-- custom CSS script-->
     <link rel="stylesheet" href="./mainWindow.css" />
     <link rel="stylesheet" href="./css/new_patient.css" />
+    <link rel="stylesheet" href="./css/schedulerWindow.css" />
   </head>
 
   <body>
@@ -38,7 +46,11 @@
         Payments
       </a>
       <div class="right menu">
-        <a id="scheduler_menu" class="ui item">
+        <a
+          href="./pages/schedulerWindow.html"
+          id="scheduler_menu"
+          class="ui item"
+        >
           Scheduler
         </a>
       </div>
