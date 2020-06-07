@@ -53,34 +53,11 @@ function initializePaymentTable()
     allPayments = rows;
     updatePaymentTable(allPayments.slice(0, pagination.pageSize));
 
-    let pagesNr = pagination.getTotalPages(rows);
-
-    $('#payment_pagination').append(
-      $('<a>', {class: 'icon item left_arrow'})
-        .append($('<i>', {class: 'left chevron icon'}))
-      );
-
-    for(let i = 1; i <= pagesNr; i++)
-    { 
-      $('#payment_pagination').append(
-        $('<a>', {class: 'item'})
-          .text(i)
-        );
-
-      if(i === pagination.maxPages)
-      {
-        break;
-      }
-    }
-
-    $('#payment_pagination').append(
-      $('<a>', {class: 'icon item right_arrow'})
-        .append($('<i>', {class: 'right chevron icon'}))
-      )
+    let totalPages = pagination.getTotalPages(rows);
 
     $('#payment_table > tbody').on('click', 'tr', handlePaymentTableClick);
     $('#payment_pagination').on('click', 'a', handlePaymentPageClick);
-    pagination.updatePaginationMenu('payment_pagination', 1, pagesNr);
+    pagination.updatePaginationMenu('payment_pagination', 1, totalPages);
   });
 }
 
@@ -92,14 +69,14 @@ function initializeAppointmentTable()
     allAppointments = rows;
     updateAppointmentTable(allAppointments.slice(0, pagination.pageSize));
 
-    let pagesNr = pagination.getTotalPages(rows);
+    let totalPages = pagination.getTotalPages(rows);
 
     $('#appointment_pagination').append(
       $('<a>', {class: 'icon item left_arrow'})
         .append($('<i>', {class: 'left chevron icon'}))
       );
 
-    for(let i = 1; i <= pagesNr; i++)
+    for(let i = 1; i <= totalPages; i++)
     {   
       $('#appointment_pagination').append(
         $('<a>', {class: 'item'})
@@ -119,7 +96,7 @@ function initializeAppointmentTable()
     
     $('#appointment_table tbody').on('click', 'tr', handleAppointmentTableClick);
     $('#appointment_pagination').on('click', 'a', handleAppointmentPageClick);
-    pagination.updatePaginationMenu('appointment_pagination', 1, pagesNr);
+    pagination.updatePaginationMenu('appointment_pagination', 1, totalPages);
   });
 }
 

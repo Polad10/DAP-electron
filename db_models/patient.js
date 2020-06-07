@@ -13,6 +13,20 @@ class Patient
             db.close();
         });
     }
+
+    static getAll(callback)
+    {
+        const db = require('./db').connect();
+
+        db.serialize(function() {
+            var query = `SELECT *
+                        FROM patient`;
+
+            db.all(query, callback)
+
+            db.close();
+        });
+    }
 }
 
 exports.Patient = Patient;
