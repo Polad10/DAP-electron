@@ -25,6 +25,8 @@ function paginate(page, id, data)
 
 function updatePaginationMenu(id, pageNr, totalPages)
 {
+  setPages(id, totalPages);
+
   let firstVisiblePage = $(`#${id} a:nth-child(2)`);
   let lastVisiblePage = $(`#${id} a:nth-last-child(2)`);
   
@@ -34,7 +36,11 @@ function updatePaginationMenu(id, pageNr, totalPages)
   let index = 2;
   let nextPageNr = pageNr;
 
-  if(pageNr < 1)
+  if(totalPages === 0)
+  {
+    pageNr = 0;
+  }
+  else if(pageNr < 1)
   {
     pageNr = 1;
   }
@@ -66,7 +72,7 @@ function updatePaginationMenu(id, pageNr, totalPages)
 function setActivePageNr(id, pageNr, totalPages)
 {
   $(`#${id} a`).removeClass('active');
-  let page = $(`#${id} a`).toArray().filter(a => $(a).text() == pageNr);
+  let page = $(`#${id} a`).toArray().filter(a => $(a).text() === pageNr.toString());
   $(page).addClass('active');
 
   updatePaginationArrows(id, pageNr, totalPages);
@@ -88,8 +94,13 @@ function updatePaginationArrows(id, pageNr, totalPages)
 {
   $(`#${id} .left_arrow`).removeClass('disabled');
   $(`#${id} .right_arrow`).removeClass('disabled');
-
-  if(pageNr === 1)
+  
+  if(pageNr === 0)
+  {
+    $(`#${id} .left_arrow`).addClass('disabled');
+    $(`#${id} .right_arrow`).addClass('disabled');
+  }
+  else if(pageNr === 1)
   {
     $(`#${id} .left_arrow`).addClass('disabled');
   }
@@ -107,10 +118,43 @@ function retrievePageData(pageNr, data)
 
     for(let i = startIndex; i < endIndex; i++)
     {
-        pageData.push(data[i]);
+      let d = data[i];
+
+      if(d)
+      {
+        pageData.push(d);
+      }
     }
 
     return pageData;
+}
+
+function setPages(id, totalPages)
+{
+  $(`#${id}`).empty();
+
+  $(`#${id}`).append(
+    $('<a>', {class: 'icon item left_arrow'})
+      .append($('<i>', {class: 'left chevron icon'}))
+    );
+
+  for(let i = 1; i <= totalPages; i++)
+  { 
+    $(`#${id}`).append(
+      $('<a>', {class: 'item'})
+        .text(i)
+      );
+
+    if(i === pagination.maxPages)
+    {
+      break;
+    }
+  }
+
+  $(`#${id}`).append(
+    $('<a>', {class: 'icon item right_arrow'})
+      .append($('<i>', {class: 'right chevron icon'}))
+    )
 }
 
 exports.pagination = {
