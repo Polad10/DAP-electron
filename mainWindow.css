@@ -50,6 +50,15 @@ a.item:hover {
   background-color: #ddf3fe !important;
 }
 
+.top_search {
+  width: 50% !important;
+  left: 25% !important;
+}
+
+.top_btn {
+  width: 50% !important;
+}
+
 /* PatientDetails */
 .info_block::after {
   content: "";
@@ -83,4 +92,9 @@ a.item:hover {
   display: flex;
   justify-content: center; /* align horizontal */
   align-items: center; /* align vertical */
+}
+
+.calendar-days {
+  -webkit-box-shadow: 0 2px 1px -1px #d4d4d5 !important;
+  box-shadow: 0 2px 1px -1px #d4d4d5 !important;
 }
