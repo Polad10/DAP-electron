@@ -3,21 +3,9 @@ var pagination = require('./js/common/pagination').pagination;
 var allPayments;
 var allAppointments;
 
-$("#AddAppointment_btn").click(function () {});
-
 function handleAddAppointmentBtnClick() {
   $("#modal_content").load("./modals/new_appointment.html", () => {
-    $("#appointment_modal").modal("show");
-    $("#appointment_calendar").calendar({
-      type: "datetime",
-    });
-    $("#treatment_dropdown").dropdown({
-      metadata: {
-        defaultText: "No Treatment Yet",
-        defaultValue: "0",
-      },
-    });
-    $("#patient_dropdown").dropdown();
+    $("#appointment_modal").modal({onApprove: () => false, detachable: false}).modal('show');
   });
 }
 

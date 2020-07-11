@@ -5,10 +5,10 @@ $('#new_patient_form').form({fields: {
         first_name: 'empty',
         last_name: 'empty'
     },
-    onSuccess: handleNewPatientBtnClick
+    onSuccess: handleNewPatientSubmit
 });
 
-function handleNewPatientBtnClick(e, fields)
+function handleNewPatientSubmit(e, fields)
 {
     e.preventDefault();
     Patient.insert(fields.first_name, fields.last_name, fields.dob, fields.phone_nr);

@@ -1,3 +1,5 @@
+var dt = require('../lib/datetime').datetime;
+
 class Appointment
 {
     static getAll(callback)
@@ -17,6 +19,20 @@ class Appointment
                         ORDER BY appointment.date, appointment.time`;
 
             db.all(query, callback)
+
+            db.close();
+        });
+    }
+
+    static insert(datetime, treatment_id, patient_id)
+    {   
+        let date = dt.toDateString(datetime);
+        let time = dt.toTimeString(datetime);
+        
+        const db = require('./db').connect();
+        
+        db.serialize(function() {
+            db.run(`INSERT INTO appointment VALUES (NULL, '${date}', '${time}', ${treatment_id}, ${patient_id})`);
 
             db.close();
         });

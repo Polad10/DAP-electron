@@ -19,7 +19,30 @@ class Treatment
                         GROUP BY treatment.id, patient.first_name, patient.last_name, treatment_name
                         HAVING (TOTAL(product.total_price) - TOTAL(payment.amount)) > 0`;
 
-            db.all(query, callback)
+            db.all(query, (err, rows) => {
+                rows = rows ? rows : [];
+                callback(err, rows);
+            });
+
+            db.close();
+        });
+    }
+
+    static getPatientTreatments(id, callback)
+    {
+        const db = require('./db').connect();
+
+        db.serialize(function() {
+            var query = `SELECT *
+                        FROM treatment
+                        INNER JOIN patient
+                        ON treatment.patient_id = patient.id
+                        WHERE patient.id = ${id}`;
+
+            db.all(query, (err, rows) => {
+                rows = rows ? rows : [];
+                callback(err, rows);
+            });
 
             db.close();
         });

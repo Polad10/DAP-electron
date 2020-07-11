@@ -22,7 +22,10 @@ class Patient
             var query = `SELECT *
                         FROM patient`;
 
-            db.all(query, callback)
+            db.all(query, (err, rows) => {
+                rows = rows ? rows : [];
+                callback(err, rows);
+            });
 
             db.close();
         });
