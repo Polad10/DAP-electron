@@ -87,7 +87,7 @@ function handleSearchPatient()
                 let name_1 = names[0];
                 let name_2 = names[1];
 
-                return (p.first_name.includes(name_1) && p.last_name.includes(name_2))
+                return (p.first_name.toLowerCase().includes(name_1) && p.last_name.toLowerCase().includes(name_2))
                         || (p.first_name.toLowerCase().includes(name_2) && p.last_name.toLowerCase().includes(name_1));
             }
         });

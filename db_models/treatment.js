@@ -47,6 +47,25 @@ class Treatment
             db.close();
         });
     }
+
+    static getAll(callback)
+    {
+        const db = require('./db').connect();
+
+        db.serialize(() => {
+            let query = `SELECT t.*, p.first_name, p.last_name
+                        FROM treatment t
+                        INNER JOIN patient p
+                        ON t.patient_id = p.id
+                        ORDER BY t.start_date DESC`
+
+            db.all(query, (err, rows) => {
+                rows = rows ? rows : [];
+                console.log(rows)
+                callback(err, rows);
+            });
+        });
+    }
 }
 
 exports.Treatment = Treatment;
