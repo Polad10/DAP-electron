@@ -38,8 +38,24 @@ function updateTreatmentTable(treatments)
 
     for(const t of treatments)
     {
+        let color;
+
+        if(t.paid === 0)
+        {
+            color = 'red';
+        }
+        else if(t.paid >= t.total_price)
+        {
+            color = 'green';
+        }
+        else
+        {
+            color = 'yellow';
+        }
+
         $('#treatment_table > tbody').append(
             $('<tr>', {'data-id': t.id})
+                .addClass(color)
                 .append($('<td>').text(t.name))
                 .append($('<td>').text(`${t.first_name} ${t.last_name}`))
                 .append($('<td>').text(t.start_date))

@@ -10,11 +10,11 @@ class Treatment
                         FROM treatment
                         INNER JOIN patient
                         ON treatment.patient_id = patient.id
-                        INNER JOIN product
+                        LEFT OUTER JOIN product
                         ON product.treatment_id = treatment.id
-                        INNER JOIN visit
+                        LEFT OUTER JOIN visit
                         ON visit.treatment_id = treatment.id
-                        INNER JOIN payment
+                        LEFT OUTER JOIN payment
                         ON payment.visit_id = visit.id
                         GROUP BY treatment.id, patient.first_name, patient.last_name, treatment_name
                         HAVING (TOTAL(product.total_price) - TOTAL(payment.amount)) > 0`;
@@ -53,15 +53,22 @@ class Treatment
         const db = require('./db').connect();
 
         db.serialize(() => {
-            let query = `SELECT t.*, p.first_name, p.last_name
+            let query = `SELECT t.id, t.name, t.start_date, t.diagnosis, p.first_name, p.last_name, 
+                            TOTAL(pr.total_price) as total_price, TOTAL(pa.amount) as paid
                         FROM treatment t
                         INNER JOIN patient p
                         ON t.patient_id = p.id
+                        LEFT OUTER JOIN product pr
+                        ON pr.treatment_id = t.id
+                        LEFT OUTER JOIN visit v
+                        ON v.treatment_id = t.id
+                        LEFT OUTER JOIN payment pa
+                        ON pa.visit_id = v.id
+                        GROUP BY t.id, t.name, t.start_date, t.diagnosis, p.first_name, p.last_name
                         ORDER BY t.start_date DESC`
 
             db.all(query, (err, rows) => {
                 rows = rows ? rows : [];
-                console.log(rows)
                 callback(err, rows);
             });
         });
