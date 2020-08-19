@@ -10,10 +10,10 @@
   "author": "Amelia Kezia G., Polad Samadzade",
   "license": "MIT",
   "dependencies": {
-    "electron": "^8.2.4",
+    "electron": "^8.5.0",
     "sqlite3": "^4.2.0"
   },
   "devDependencies": {
-    "electron-builder": "^22.6.0"
+    "electron-builder": "^22.8.0"
   }
 }
