@@ -43,7 +43,15 @@ a.item:hover {
 }
 
 .mt-20 {
-  margin-top: 20px;
+  margin-top: 20px !important;
+}
+
+.ml-50 {
+  margin-left: 50px !important;
+}
+
+.mr-50 {
+  margin-right: 50px !important;
 }
 
 .sky_blue {
