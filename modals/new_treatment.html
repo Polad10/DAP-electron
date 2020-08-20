@@ -1,7 +1,9 @@
-<div id="va_modal" class="ui small modal">
-  <div class="header">Add a Visit/Appointment</div>
+<div id="treatment_modal" class="ui small modal">
+  <div class="header">
+    New Treatment
+  </div>
   <div class="scrolling content">
-    <form id="new_va_form" class="ui form">
+    <form id="new_treatment_form" class="ui form">
       <div class="fields">
         <div class="thirteen wide required field">
           <label>Patient Name</label>
@@ -55,38 +57,32 @@
         </div>
       </div>
       <div class="mt-20 fields">
-        <div class="thirteen wide required field">
-          <label>Add visit/appointment for:</label>
-          <select
-            class="ui fluid search selection dropdown"
-            name="Treatment"
-            placeholder="Treatment Name"
-          >
-          </select>
+        <div class="required field">
+          <label>Start Date</label>
+          <div class="ui calendar">
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+              <input name="date" type="text" placeholder="Choose the date" />
+            </div>
+          </div>
         </div>
-
-        <div class="three wide field">
-          <label> &nbsp;</label>
-          <div class="fluid ui vertical animated button" tabindex="0">
-            <div class="hidden content">Create Treatment</div>
-            <div class="visible content">
-              <i class="plus icon"></i>
+        <div class="required field">
+          <label>End Date</label>
+          <div class="ui calendar">
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+              <input name="date" type="text" placeholder="Choose the date" />
             </div>
           </div>
         </div>
       </div>
       <div class="required field">
-        <label>Action</label>
+        <label>Diagnosis</label>
         <textarea rows="2"></textarea>
       </div>
-      <div class="required field">
-        <label>Date</label>
-        <div id="appointment_calendar" class="ui calendar">
-          <div class="ui input left icon">
-            <i class="calendar icon"></i>
-            <input name="date" type="text" placeholder="Choose the date" />
-          </div>
-        </div>
+      <div class="field">
+        <label>Additional Info</label>
+        <textarea rows="2"></textarea>
       </div>
     </form>
   </div>
@@ -101,4 +97,4 @@
   </div>
 </div>
 
-<script src="./js/new_va.js"></script>
+<script src="./js/new_treatment.js"></script>
