@@ -1,6 +1,31 @@
+<div class="ui placeholder segment">
+  <div class="ui two column center aligned grid">
+    <div class="ui vertical divider">Or</div>
+    <div class="middle aligned row">
+      <div class="column">
+        <div class="ui icon header">
+          <i class="search icon"></i>
+          Add Appointment
+        </div>
+        <div class="ui primary button">
+          Create
+        </div>
+      </div>
+      <div class="column">
+        <div class="ui icon header">
+          <i class="world icon"></i>
+          Add Visit
+        </div>
+        <div class="ui primary button">
+          Create
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="ui vertical segment">
-  <div class="ui divided horizontally padded grid">
-    <div class="row">
+  <div class="ui two column divided horizontally padded grid">
+    <!-- <div class="row">
       <div class="eight wide column">
         <h3 class="ui header left floated">Today's Appointments</h3>
         <button
@@ -18,8 +43,10 @@
           </button>
         </div>
       </div>
-    </div>
-    <div class="eight wide column">
+    </div> -->
+    <div class="column">
+      <h2 class="ui left floated header">Today's appointments</h2>
+      <div class="ui clearing divider"></div>
       <table
         id="appointment_table"
         class="ui very basic fixed single line selectable table"
@@ -52,7 +79,9 @@
         </tfoot>
       </table>
     </div>
-    <div class="eight wide column">
+    <div class="column">
+      <h2 class="ui left floated header">Visits for today</h2>
+      <div class="ui clearing divider"></div>
       <table
         id="visit_table"
         class="ui very basic fixed single line selectable table"
