@@ -1,8 +1,7 @@
-<form id="new_patient_form" class="ui form"></form>
-<div id="visit_modal" class="ui modal">
-  <div class="header">Add a Visit</div>
+<div id="va_modal" class="ui modal">
+  <div class="header">Add a Visit/Appointment</div>
   <div class="content">
-    <form id="new_visit_form" class="ui form">
+    <form id="new_va_form" class="ui form">
       <div class="fields">
         <div class="thirteen wide required field">
           <label>Patient Name</label>
@@ -35,49 +34,29 @@
       >
         <div class="required field">
           <label>First Name</label>
-          <input
-            form="new_patient_form"
-            name="first_name"
-            type="text"
-            placeholder="First Name"
-          />
+          <input name="first_name" type="text" placeholder="First Name" />
         </div>
         <div class="required field">
           <label>Last Name</label>
-          <input
-            form="new_patient_form"
-            name="last_name"
-            type="text"
-            placeholder="Last Name"
-          />
+          <input name="last_name" type="text" placeholder="Last Name" />
         </div>
         <div class="field">
           <label>Date of Birth</label>
           <div id="dob_calendar" class="ui calendar">
             <div class="ui input left icon">
               <i class="calendar alternate outline icon"></i>
-              <input
-                form="new_patient_form"
-                name="dob"
-                type="text"
-                placeholder="Date of Birth"
-              />
+              <input name="dob" type="text" placeholder="Date of Birth" />
             </div>
           </div>
         </div>
         <div class="field">
           <label>Phone Number</label>
-          <input
-            form="new_patient_form"
-            name="phone_nr"
-            type="text"
-            placeholder="Phone Number"
-          />
+          <input name="phone_nr" type="text" placeholder="Phone Number" />
         </div>
       </div>
       <div class="mt-20 fields">
         <div class="thirteen wide required field">
-          <label>Add appointment for:</label>
+          <label>Add visit/appointment for:</label>
           <select
             class="ui fluid search selection dropdown"
             name="Treatment"
@@ -105,12 +84,7 @@
         <div id="appointment_calendar" class="ui calendar">
           <div class="ui input left icon">
             <i class="calendar icon"></i>
-            <input
-              form="new_visit_form"
-              name="date"
-              type="text"
-              placeholder="Choose the date"
-            />
+            <input name="date" type="text" placeholder="Choose the date" />
           </div>
         </div>
       </div>
@@ -120,15 +94,11 @@
     <button class="ui black deny button">
       Cancel
     </button>
-    <button
-      class="ui positive right labeled icon button"
-      type="submit"
-      form="new_visit_form"
-    >
+    <button class="ui positive right labeled icon button" type="submit">
       Create
       <i class="checkmark icon"></i>
     </button>
   </div>
 </div>
 
-<script src="./js/new_visit.js"></script>
+<script src="./js/new_va.js"></script>
