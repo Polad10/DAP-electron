@@ -9,7 +9,7 @@ class Appointment
         const currentDateString = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}}`;
 
         db.serialize(function() {
-            var query = `SELECT appointment.*, patient.first_name, patient.last_name, treatment.name as treatment_name
+            var query = `SELECT appointment.*, patient.first_name, patient.last_name
                         FROM appointment
                         INNER JOIN patient
                         ON appointment.patient_id = patient.id
@@ -24,7 +24,7 @@ class Appointment
         });
     }
 
-    static insert(datetime, treatment_id, patient_id)
+    static insert(datetime, treatment_id, patient_id, actions)
     {   
         let date = dt.toDateString(datetime);
         let time = dt.toTimeString(datetime);
@@ -32,7 +32,7 @@ class Appointment
         const db = require('./db').db.connect();
         
         db.serialize(function() {
-            db.run(`INSERT INTO appointment VALUES (NULL, '${date}', '${time}', ${treatment_id}, ${patient_id})`);
+            db.run(`INSERT INTO appointment VALUES (NULL, '${date}', '${time}', ${treatment_id}, ${patient_id}, '${actions}')`);
 
             db.close();
         });

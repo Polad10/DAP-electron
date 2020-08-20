@@ -5,7 +5,7 @@ class Treatment
         const db = require('./db').db.connect();
 
         db.serialize(function() {
-            var query = `SELECT treatment.id , patient.first_name, patient.last_name, treatment.name as treatment_name,
+            var query = `SELECT treatment.id , patient.first_name, patient.last_name,
                                 ROUND(TOTAL(product.total_price) - TOTAL(payment.amount), 2) as pending_payment
                         FROM treatment
                         INNER JOIN patient
@@ -16,7 +16,7 @@ class Treatment
                         ON visit.treatment_id = treatment.id
                         LEFT OUTER JOIN payment
                         ON payment.visit_id = visit.id
-                        GROUP BY treatment.id, patient.first_name, patient.last_name, treatment_name
+                        GROUP BY treatment.id, patient.first_name, patient.last_name
                         HAVING (TOTAL(product.total_price) - TOTAL(payment.amount)) > 0`;
 
             db.all(query, (err, rows) => {
@@ -53,7 +53,7 @@ class Treatment
         const db = require('./db').db.connect();
 
         db.serialize(() => {
-            let query = `SELECT t.id, t.name, t.start_date, t.diagnosis, p.first_name, p.last_name, 
+            let query = `SELECT t.id, t.start_date, t.diagnosis, p.first_name, p.last_name, 
                             TOTAL(pr.total_price) as total_price, TOTAL(pa.amount) as paid
                         FROM treatment t
                         INNER JOIN patient p
@@ -64,7 +64,7 @@ class Treatment
                         ON v.treatment_id = t.id
                         LEFT OUTER JOIN payment pa
                         ON pa.visit_id = v.id
-                        GROUP BY t.id, t.name, t.start_date, t.diagnosis, p.first_name, p.last_name
+                        GROUP BY t.id, t.start_date, t.diagnosis, p.first_name, p.last_name
                         ORDER BY t.start_date DESC`
 
             db.all(query, (err, rows) => {

@@ -5,7 +5,7 @@ class Payment
         const db = require('./db').db.connect();
 
         db.serialize(function() {
-            var query = `SELECT payment.*, patient.first_name, patient.last_name, treatment.name as treatment_name
+            var query = `SELECT payment.*, patient.first_name, patient.last_name
                         FROM payment
                         INNER JOIN visit
                         ON payment.visit_id = visit.id
