@@ -67,7 +67,11 @@
 
         <div class="three wide field">
           <label> &nbsp;</label>
-          <div class="fluid ui vertical animated button" tabindex="0">
+          <div
+            id="new_treatment_btn"
+            class="fluid ui vertical animated button"
+            tabindex="0"
+          >
             <div class="hidden content">Create Treatment</div>
             <div class="visible content">
               <i class="plus icon"></i>
@@ -75,7 +79,41 @@
           </div>
         </div>
       </div>
-      <div class="required field">
+      <div
+        id="add_treatment_content"
+        class="ui ml-50 mr-50"
+        style="display: none;"
+      >
+        <div class="fields">
+          <div class="required field">
+            <label>Start Date</label>
+            <div class="ui calendar">
+              <div class="ui input left icon">
+                <i class="calendar icon"></i>
+                <input name="date" type="text" placeholder="Choose the date" />
+              </div>
+            </div>
+          </div>
+          <div class="required field">
+            <label>End Date</label>
+            <div class="ui calendar">
+              <div class="ui input left icon">
+                <i class="calendar icon"></i>
+                <input name="date" type="text" placeholder="Choose the date" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="required field">
+          <label>Diagnosis</label>
+          <textarea rows="2"></textarea>
+        </div>
+        <div class="field">
+          <label>Additional Info</label>
+          <textarea rows="2"></textarea>
+        </div>
+      </div>
+      <div class="mt-20 required field">
         <label>Action</label>
         <textarea rows="2"></textarea>
       </div>
