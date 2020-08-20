@@ -46,6 +46,14 @@ a.item:hover {
   margin-top: 20px !important;
 }
 
+.ml-50 {
+  margin-left: 50px !important;
+}
+
+.mr-50 {
+  margin-right: 50px !important;
+}
+
 .sky_blue {
   background-color: #ddf3fe !important;
 }
