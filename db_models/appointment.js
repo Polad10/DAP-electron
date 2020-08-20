@@ -4,7 +4,7 @@ class Appointment
 {
     static getAll(callback)
     {
-        const db = require('./db').connect();
+        const db = require('./db').db.connect();
         const currentDate = new Date();
         const currentDateString = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}}`;
 
@@ -29,7 +29,7 @@ class Appointment
         let date = dt.toDateString(datetime);
         let time = dt.toTimeString(datetime);
         
-        const db = require('./db').connect();
+        const db = require('./db').db.connect();
         
         db.serialize(function() {
             db.run(`INSERT INTO appointment VALUES (NULL, '${date}', '${time}', ${treatment_id}, ${patient_id})`);

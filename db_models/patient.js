@@ -2,7 +2,7 @@ class Patient
 {
     static insert(first_name, last_name, dob, phone_nr)
     {
-        const db = require('./db').connect();
+        const db = require('./db').db.connect();
 
         db.serialize(function() {
             db.run(`CREATE TABLE IF NOT EXISTS patient 
@@ -16,7 +16,7 @@ class Patient
 
     static getAll(callback)
     {
-        const db = require('./db').connect();
+        const db = require('./db').db.connect();
 
         db.serialize(function() {
             var query = `SELECT *

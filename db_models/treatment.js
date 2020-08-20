@@ -2,7 +2,7 @@ class Treatment
 {
     static getPendingPayments(callback)
     {
-        const db = require('./db').connect();
+        const db = require('./db').db.connect();
 
         db.serialize(function() {
             var query = `SELECT treatment.id , patient.first_name, patient.last_name, treatment.name as treatment_name,
@@ -30,7 +30,7 @@ class Treatment
 
     static getPatientTreatments(id, callback)
     {
-        const db = require('./db').connect();
+        const db = require('./db').db.connect();
 
         db.serialize(function() {
             var query = `SELECT *
@@ -50,7 +50,7 @@ class Treatment
 
     static getAll(callback)
     {
-        const db = require('./db').connect();
+        const db = require('./db').db.connect();
 
         db.serialize(() => {
             let query = `SELECT t.id, t.name, t.start_date, t.diagnosis, p.first_name, p.last_name, 

@@ -2,7 +2,7 @@ class Visit
 {
     static getAll(callback)
     {
-        const db = require('./db').connect();
+        const db = require('./db').db.connect();
 
         db.serialize(function() {
             var query = `SELECT visit.*, patient.first_name, patient.last_name

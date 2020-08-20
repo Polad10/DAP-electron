@@ -1,3 +1,5 @@
+const { db } = require("./db_models/db");
+
 //load homeWindow when loaded
 $(document).ready(function() {
   $("#content").load("./pages/homeWindow.html", function() {});

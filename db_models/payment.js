@@ -2,7 +2,7 @@ class Payment
 {
     static getAll(callback)
     {
-        const db = require('./db').connect();
+        const db = require('./db').db.connect();
 
         db.serialize(function() {
             var query = `SELECT payment.*, patient.first_name, patient.last_name, treatment.name as treatment_name
