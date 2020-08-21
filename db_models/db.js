@@ -26,8 +26,8 @@ const initialize = function()
                 start_date TEXT, 
                 end_date TEXT, 
                 diagnosis TEXT, 
-                recommendation TEXT, 
-                status TEXT,
+                extra_info TEXT, 
+                status TEXT DEFAULT 'Ongoing',
                 FOREIGN KEY (patient_id) REFERENCES patient(id))`);
 
         db.run(`CREATE TABLE IF NOT EXISTS appointment 
