@@ -3,9 +3,21 @@ var pagination = require('./js/common/pagination').pagination;
 var allPayments;
 var allAppointments;
 
-function handleAddAppointmentBtnClick() {
-  $("#modal_content").load("./modals/new_appointment.html", () => {
-    $("#appointment_modal").modal({onApprove: () => false, detachable: false}).modal('show');
+function handleAddAppointmentBtnClick() 
+{
+  showVAForm('appointment');
+}
+
+function handleAddVisitBtnClick()
+{
+  showVAForm('visit');
+}
+
+function showVAForm(name)
+{
+  $("#modal_content").load("./modals/new_va.html", () => {
+    $('#new_va_form').data('name', name);
+    $("#va_modal").modal({onApprove: () => false, detachable: false}).modal('show');
   });
 }
 
@@ -14,12 +26,14 @@ function handleAppointmentTableClick() {
   $("#content").load("./pages/patientDetails.html", function () {});
 }
 
-function handlePaymentTableClick() {
+function handlePaymentTableClick() 
+{
   let id = $(this).data("id");
   console.log(id);
 }
 
-function handleVisitTableClick() {
+function handleVisitTableClick() 
+{
   let id = $(this).data("id");
   console.log(id);
 }
@@ -31,6 +45,7 @@ function initialize()
   initializeVisitTable();
   
   $("#new_appointment_btn").on('click', handleAddAppointmentBtnClick);
+  $('#new_visit_btn').on('click', handleAddVisitBtnClick);
 }
 
 function initializePaymentTable()

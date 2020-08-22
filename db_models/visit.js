@@ -1,3 +1,5 @@
+const dt = require('../lib/datetime').datetime;
+
 class Visit
 {
     static getAll(callback)
@@ -14,6 +16,23 @@ class Visit
                         ORDER BY visit.date DESC, visit.time DESC`;
 
             db.all(query, callback)
+
+            db.close();
+        });
+    }
+
+    static insert(treatmentID, datetime, actions)
+    {
+        const db = require('./db').db.connect();
+
+        db.serialize(function() {
+            let date = dt.toDateString(datetime);
+            let time = dt.toTimeString(datetime);
+
+            let query = `INSERT INTO visit 
+                        VALUES (NULL, ${treatmentID}, '${date}', '${time}', '${actions}')`;
+            
+            db.run(query);
 
             db.close();
         });

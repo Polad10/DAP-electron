@@ -24,7 +24,7 @@ class Appointment
         });
     }
 
-    static insert(datetime, treatment_id, patient_id, actions)
+    static insert(datetime, treatment_id, actions)
     {   
         let date = dt.toDateString(datetime);
         let time = dt.toTimeString(datetime);
@@ -32,7 +32,7 @@ class Appointment
         const db = require('./db').db.connect();
         
         db.serialize(function() {
-            db.run(`INSERT INTO appointment VALUES (NULL, '${date}', '${time}', ${treatment_id}, ${patient_id}, '${actions}')`);
+            db.run(`INSERT INTO appointment VALUES (NULL, '${date}', '${time}', ${treatment_id}, '${actions}')`);
 
             db.close();
         });

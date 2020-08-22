@@ -3,7 +3,7 @@
   <div class="scrolling content">
     <form id="new_va_form" class="ui form">
       <div class="fields">
-        <div class="thirteen wide required field">
+        <div id="patient_field" class="thirteen wide required field">
           <label>Patient Name</label>
           <select
             id="patient_dropdown"
@@ -41,6 +41,10 @@
           <input name="last_name" type="text" placeholder="Last Name" />
         </div>
         <div class="field">
+          <label>City</label>
+          <input name="city" type="text" placeholder="City" />
+        </div>
+        <div class="required field">
           <label>Date of Birth</label>
           <div id="dob_calendar" class="ui calendar">
             <div class="ui input left icon">
@@ -53,13 +57,18 @@
           <label>Phone Number</label>
           <input name="phone_nr" type="text" placeholder="Phone Number" />
         </div>
+        <div class="field">
+          <label>Additional Info</label>
+          <textarea name="patient_extra_info" rows="2"></textarea>
+        </div>
       </div>
       <div class="mt-20 fields">
         <div class="thirteen wide required field">
           <label>Add visit/appointment for:</label>
           <select
+            id="treatment_dropdown"
             class="ui fluid search selection dropdown"
-            name="Treatment"
+            name="treatment"
             placeholder="Treatment Name"
           >
           </select>
@@ -87,16 +96,16 @@
         <div class="fields">
           <div class="required field">
             <label>Start Date</label>
-            <div class="ui calendar">
+            <div id="start_date_calendar" class="ui calendar">
               <div class="ui input left icon">
                 <i class="calendar icon"></i>
-                <input name="date" type="text" placeholder="Choose the date" />
+                <input name="start_date" type="text" placeholder="Choose the date" />
               </div>
             </div>
           </div>
-          <div class="required field">
+          <div class="field">
             <label>End Date</label>
-            <div class="ui calendar">
+            <div id="end_date_calendar" class="ui calendar">
               <div class="ui input left icon">
                 <i class="calendar icon"></i>
                 <input name="date" type="text" placeholder="Choose the date" />
@@ -106,23 +115,23 @@
         </div>
         <div class="required field">
           <label>Diagnosis</label>
-          <textarea rows="2"></textarea>
+          <textarea name="diagnosis" rows="2"></textarea>
         </div>
         <div class="field">
           <label>Additional Info</label>
-          <textarea rows="2"></textarea>
+          <textarea name="extra_info" rows="2"></textarea>
         </div>
       </div>
-      <div class="mt-20 required field">
-        <label>Action</label>
-        <textarea rows="2"></textarea>
+      <div class="mt-20 field">
+        <label>Actions</label>
+        <textarea name="actions" rows="2"></textarea>
       </div>
       <div class="required field">
         <label>Date</label>
-        <div id="appointment_calendar" class="ui calendar">
+        <div id="va_calendar" class="ui calendar">
           <div class="ui input left icon">
             <i class="calendar icon"></i>
-            <input name="date" type="text" placeholder="Choose the date" />
+            <input name="va_date" type="text" placeholder="Choose the date" />
           </div>
         </div>
       </div>
@@ -132,7 +141,7 @@
     <button class="ui black deny button">
       Cancel
     </button>
-    <button class="ui positive right labeled icon button" type="submit">
+    <button class="ui positive right labeled icon button" type="submit" form="new_va_form">
       Create
       <i class="checkmark icon"></i>
     </button>

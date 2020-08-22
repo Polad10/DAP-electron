@@ -1,3 +1,5 @@
+var dt = require('../lib/datetime').datetime;
+
 class Treatment
 {
     static getPendingPayments(callback)
@@ -28,16 +30,16 @@ class Treatment
         });
     }
 
-    static getPatientTreatments(id, callback)
+    static getPatientTreatments(patientID, callback)
     {
         const db = require('./db').db.connect();
 
         db.serialize(function() {
-            var query = `SELECT *
-                        FROM treatment
-                        INNER JOIN patient
-                        ON treatment.patient_id = patient.id
-                        WHERE patient.id = ${id}`;
+            var query = `SELECT t.*, p.first_name, p.last_name
+                        FROM treatment t
+                        INNER JOIN patient p
+                        ON t.patient_id = p.id
+                        WHERE p.id = ${patientID}`;
 
             db.all(query, (err, rows) => {
                 rows = rows ? rows : [];
@@ -71,6 +73,23 @@ class Treatment
                 rows = rows ? rows : [];
                 callback(err, rows);
             });
+        });
+    }
+
+    static insert(patientID, startDate, endDate, diagnosis, extra_info, callback)
+    {
+        let startDateString = dt.toDateString(startDate);
+        let endDateString = endDate ? dt.toDateString(endDate) : '';
+
+        const db = require('./db').db.connect();
+
+        db.serialize(function() {
+            let query = `INSERT INTO treatment (patient_id, start_date, end_date, diagnosis, extra_info)
+                        VALUES (${patientID}, '${startDateString}', '${endDateString}', '${diagnosis}', '${extra_info}')`;
+            
+            db.run(query, callback);
+
+            db.close();
         });
     }
 }
