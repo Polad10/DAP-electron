@@ -2,11 +2,26 @@
   <div class="ui two column very relaxed stackable grid">
     <div class="column">
       <div class="ui search">
-        <div class="ui icon fluid top_search input">
-          <input id="search_treatment" class="prompt" type="text" placeholder="Search..." />
+        <div class="ui right action left icon fluid top_search input">
+          <input
+            id="search_treatment"
+            class="prompt"
+            type="text"
+            placeholder="Search..."
+          />
           <i class="search icon"></i>
+          <div
+            id="treatment_window_dropdown"
+            class="ui basic floating dropdown button"
+          >
+            <div class="text">All</div>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <div class="item">Patient Name</div>
+              <div class="item">Diagnosis</div>
+            </div>
+          </div>
         </div>
-        <div class="results"></div>
       </div>
     </div>
     <div class="column">
@@ -57,20 +72,49 @@
 </div>
 
 <div class="ui container basic padded segment">
-  <table id="treatment_table" class="ui basic fixed single line selectable celled table">
+  <h4 class="ui right floated header">
+    <i class="calendar alternate icon"></i>
+    <div class="content">
+      Show
+      <div id="treatment_status_dropdown" class="ui inline dropdown">
+        <div class="text">all treatment</div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <div class="header">Adjust time span</div>
+          <div class="active item" data-text="all treatments">
+            All Treatments
+          </div>
+          <div class="item" data-text="finished treatments">
+            Finished Treatments
+          </div>
+          <div class="item" data-text="ongoing treatments">
+            Ongoing Treatments
+          </div>
+        </div>
+      </div>
+    </div>
+  </h4>
+  <table
+    id="treatment_table"
+    class="ui basic fixed single line selectable celled table"
+  >
     <thead>
       <tr>
-        <th class="six wide">Treatment Name</th>
-        <th class="three wide">Patient Name</th>
+        <th class="six wide">Patient Name</th>
+        <th class="three wide">Diagnosis</th>
         <th class="two wide">Start Date</th>
-        <th class="five wide">Diagnosis</th>
+        <th class="two wide">End Date</th>
+        <th class="five wide">Status</th>
       </tr>
     </thead>
     <tbody></tbody>
     <tfoot>
       <tr>
-        <th colspan="4">
-          <div id="treatment_pagination" class="ui right floated pagination menu"></div>
+        <th colspan="5">
+          <div
+            id="treatment_pagination"
+            class="ui right floated pagination menu"
+          ></div>
         </th>
       </tr>
     </tfoot>
