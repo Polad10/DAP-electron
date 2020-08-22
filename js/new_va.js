@@ -118,7 +118,7 @@ function handleNewVASubmit(e, fields)
     });
   }
 
-  $('#new_va_modal').modal('hide');
+  $('#va_modal').modal('hide');
 }
 
 function SetNewPatientForm(state)
