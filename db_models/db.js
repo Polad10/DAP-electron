@@ -35,10 +35,8 @@ const initialize = function()
                 date TEXT, 
                 time TEXT, 
                 treatment_id INTEGER, 
-                patient_id INTEGER, 
                 actions TEXT,
-                FOREIGN KEY (treatment_id) REFERENCES treatment(id),
-                FOREIGN KEY(patient_id) REFERENCES patient(id))`);
+                FOREIGN KEY (treatment_id) REFERENCES treatment(id))`);
 
         db.run(`CREATE TABLE IF NOT EXISTS product 
                 (id INTEGER PRIMARY KEY AUTOINCREMENT, 
