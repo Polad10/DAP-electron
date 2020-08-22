@@ -4,7 +4,8 @@ var allTreatments;
 var currentTreatments;
 
 function initialize() {
-  $("#treatment_dropdown").dropdown({});
+  $("#treatment_window_dropdown").dropdown({});
+  $("#treatment_status_dropdown").dropdown({});
 
   initializeTreatmentTable();
 
