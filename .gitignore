@@ -6,6 +6,4 @@ dist
 #extensions
 *.tgz
 *.log
-
-#files
-db/*
+*.db
