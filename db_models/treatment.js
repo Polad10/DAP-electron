@@ -73,6 +73,8 @@ class Treatment
                 rows = rows ? rows : [];
                 callback(err, rows);
             });
+
+            db.close();
         });
     }
 

@@ -1,0 +1,156 @@
+<div id="visit_modal" class="ui small modal">
+    <div class="header">New Visit</div>
+    <div class="scrolling content">
+      <form id="new_visit_form" class="ui form">
+        <div class="fields">
+          <div id="patient_field" class="thirteen wide required field">
+            <label>Patient Name</label>
+            <select
+              id="patient_dropdown"
+              class="ui fluid search selection dropdown"
+              name="patient"
+              placeholder="Patient Name"
+            >
+            </select>
+          </div>
+          <div class="three wide field">
+            <label> &nbsp;</label>
+            <div
+              id="new_patient_btn"
+              class="fluid ui vertical animated button"
+              tabindex="0"
+            >
+              <div class="hidden content">Add Patient</div>
+              <div class="visible content">
+                <i class="plus icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          id="add_patient_content"
+          class="ui ml-50 mr-50"
+          style="display: none;"
+        >
+          <div class="required field">
+            <label>First Name</label>
+            <input name="first_name" type="text" placeholder="First Name" />
+          </div>
+          <div class="required field">
+            <label>Last Name</label>
+            <input name="last_name" type="text" placeholder="Last Name" />
+          </div>
+          <div class="field">
+            <label>City</label>
+            <input name="city" type="text" placeholder="City" />
+          </div>
+          <div class="required field">
+            <label>Date of Birth</label>
+            <div id="dob_calendar" class="ui calendar">
+              <div class="ui input left icon">
+                <i class="calendar alternate outline icon"></i>
+                <input name="dob" type="text" placeholder="Date of Birth" />
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Phone Number</label>
+            <input name="phone_nr" type="text" placeholder="Phone Number" />
+          </div>
+          <div class="field">
+            <label>Additional Info</label>
+            <textarea name="patient_extra_info" rows="2"></textarea>
+          </div>
+        </div>
+        <div class="mt-20 fields">
+          <div class="thirteen wide required field">
+            <label>Select treatment</label>
+            <select
+              id="treatment_dropdown"
+              class="ui fluid search selection dropdown"
+              name="treatment"
+              placeholder="Treatment Name"
+            >
+            </select>
+          </div>
+  
+          <div class="three wide field">
+            <label> &nbsp;</label>
+            <div
+              id="new_treatment_btn"
+              class="fluid ui vertical animated button"
+              tabindex="0"
+            >
+              <div class="hidden content">Create Treatment</div>
+              <div class="visible content">
+                <i class="plus icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          id="add_treatment_content"
+          class="ui ml-50 mr-50"
+          style="display: none;"
+        >
+          <div class="fields">
+            <div class="required field">
+              <label>Start Date</label>
+              <div id="start_date_calendar" class="ui calendar">
+                <div class="ui input left icon">
+                  <i class="calendar icon"></i>
+                  <input name="start_date" type="text" placeholder="Choose the date" />
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label>End Date</label>
+              <div id="end_date_calendar" class="ui calendar">
+                <div class="ui input left icon">
+                  <i class="calendar icon"></i>
+                  <input name="end_date" type="text" placeholder="Choose the date" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="required field">
+            <label>Diagnosis</label>
+            <textarea name="diagnosis" rows="2"></textarea>
+          </div>
+          <div class="field">
+            <label>Additional Info</label>
+            <textarea name="extra_info" rows="2"></textarea>
+          </div>
+        </div>
+        <div class="mt-20 field">
+          <label>Actions</label>
+          <textarea name="actions" rows="2"></textarea>
+        </div>
+        <div class="field">
+            <label>Payment</label>
+            <input name="payment" type="number" min="0" step="any" placeholder="0.00">
+        </div>
+        <div class="required field">
+          <label>Date</label>
+          <div id="visit_calendar" class="ui calendar">
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+              <input name="date" type="text" placeholder="Choose the date" />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="actions">
+      <button class="ui black deny button">
+        Cancel
+      </button>
+      <button class="ui positive right labeled icon button" type="submit" form="new_visit_form">
+        Create
+        <i class="checkmark icon"></i>
+      </button>
+    </div>
+  </div>
+  
+  <script src="./js/new_visit.js"></script>
+  

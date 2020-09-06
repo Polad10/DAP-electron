@@ -72,7 +72,7 @@ function updatePaginationMenu(id, pageNr, totalPages)
 function setActivePageNr(id, pageNr, totalPages)
 {
   $(`#${id} a`).removeClass('active');
-  let page = $(`#${id} a`).toArray().filter(a => $(a).text() === pageNr.toString());
+  let page = $(`#${id} a`).toArray().find(a => $(a).text() === pageNr.toString());
   $(page).addClass('active');
 
   updatePaginationArrows(id, pageNr, totalPages);
@@ -80,7 +80,7 @@ function setActivePageNr(id, pageNr, totalPages)
 
 function getActivePageNr(id)
 {
-  let page = $(`#${id} a`).toArray().filter(a => $(a).hasClass('active'));
+  let page = $(`#${id} a`).toArray().find(a => $(a).hasClass('active'));
 
   return parseInt($(page).text(), 10);
 }
@@ -141,8 +141,7 @@ function setPages(id, totalPages)
   for(let i = 1; i <= totalPages; i++)
   { 
     $(`#${id}`).append(
-      $('<a>', {class: 'item'})
-        .text(i)
+      $('<a>', {class: 'item'}).text(i)
       );
 
     if(i === pagination.maxPages)
