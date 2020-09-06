@@ -36,6 +36,7 @@ const initialize = function()
                 time TEXT, 
                 treatment_id INTEGER, 
                 actions TEXT,
+                status TEXT DEFAULT 'Expected',
                 FOREIGN KEY (treatment_id) REFERENCES treatment(id))`);
 
         db.run(`CREATE TABLE IF NOT EXISTS product 

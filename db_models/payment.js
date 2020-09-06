@@ -19,6 +19,20 @@ class Payment
             db.close();
         });
     }
+
+    static insert(amount, visitID, callback)
+    {
+        const db = require('./db').db.connect();
+
+        db.serialize(function() {
+            let query = `INSERT INTO payment (amount, visit_id)
+                        VALUES (${amount}, ${visitID})`;
+
+            db.run(query, callback);
+            
+            db.close();
+        });
+    }
 }
 
 exports.Payment = Payment;

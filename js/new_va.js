@@ -94,6 +94,7 @@ function handlePatientDropdownChange(value, text, choice)
 
 function handleNewVASubmit(e, fields)
 {
+  console.log(fields)
   e.preventDefault();
 
   if(fields.patient)
