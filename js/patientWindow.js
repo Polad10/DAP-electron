@@ -1,12 +1,14 @@
-var pagination = require('./js/common/pagination').pagination;
+try { var pagination = require('./js/common/pagination').pagination; }
+catch(ex) {}
+
+try { var Patient = require('./db_models/patient').Patient; }
+catch(ex) {}
 
 var allPatients;
 var currentPatients;
 
 function initialize()
 {
-    $("#patient_dropdown").dropdown({});
-
     initializePatientTable();
 
     $('#new_patient_btn').on('click', handleNewPatientBtnClick);
@@ -15,8 +17,6 @@ function initialize()
 
 function initializePatientTable()
 {
-  var Patient = require('./db_models/patient').Patient;
-
   Patient.getAll((err, rows) => {
     allPatients = rows;
     currentPatients = rows;
@@ -34,14 +34,25 @@ function updatePatientTable(patients)
 {
   $('#patient_table > tbody').empty();
 
-  for(const p of patients)
+  if(patients.length === 0)
   {
-    $('#patient_table > tbody').append(
-      $('<tr>', {'data-id': p.id})
-        .append($('<td>').text(`${p.first_name} ${p.last_name}`))
-        .append($('<td>').text(`${p.dob}`))
-        .append($('<td>').text(`${p.phone_nr}`))
-      );
+    $('#no_patient').show();
+  }
+  else
+  {
+    $('#no_patient').hide();
+    
+    for(const p of patients)
+    {
+      $('#patient_table > tbody').append(
+        $('<tr>', {'data-id': p.id})
+          .append($('<td>', {'class': 'center aligned'}).text(`${p.first_name} ${p.last_name}`))
+          .append($('<td>', {'class': 'center aligned'}).text(`${p.city}`))
+          .append($('<td>', {'class': 'center aligned'}).text(`${p.dob}`))
+          .append($('<td>', {'class': 'center aligned'}).text(`${p.phone_nr}`))
+          .append($('<td>').text(`${p.extra_info}`))
+        );
+    }
   }
 }
 
@@ -60,7 +71,9 @@ function handlePatientTableClick() {
 function handleNewPatientBtnClick()
 {
     $('#modal_content').load('./modals/new_patient.html', () => {
-        $('#patient_modal').modal({onApprove: () => false, detachable: false}).modal('show');
+      subscribeToPatientSubmit(() => {
+        initializePatientTable();
+      });
     });
 }
 

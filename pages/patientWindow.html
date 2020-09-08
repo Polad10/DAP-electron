@@ -30,7 +30,7 @@
     id="patient_table"
     class="ui basic fixed single line selectable celled table"
   >
-    <thead>
+    <thead class="center aligned">
       <tr>
         <th>Patient Name</th>
         <th>City</th>
@@ -41,6 +41,13 @@
     </thead>
     <tbody></tbody>
     <tfoot>
+      <tr id="no_patient" style="display: none;">
+        <th colspan="5">
+          <p class="center aligned column">
+            There are no patients yet . . .
+          </p>
+        </th>
+      </tr>
       <tr>
         <th colspan="5">
           <div
