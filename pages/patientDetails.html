@@ -45,7 +45,7 @@
       <div class="seven wide middle aligned column">
         <div class="ui list">
           <a class="item">
-            <i class="stethoscope icon"></i>
+            <i class="large stethoscope middle aligned icon"></i>
             <div class="content">
               <div class="header">Current Treatment</div>
               <div class="description">
@@ -54,21 +54,25 @@
             </div>
           </a>
           <a class="item">
-            <i class="arrow alternate circle left outline icon"></i>
+            <i
+              class="large arrow alternate circle left outline middle aligned icon"
+            ></i>
             <div class="content">
               <div class="header">Last Visit</div>
               <div class="description">18 June 2019</div>
             </div>
           </a>
           <a class="item">
-            <i class="arrow alternate circle right outline icon"></i>
+            <i
+              class="large arrow alternate circle right outline middle aligned icon"
+            ></i>
             <div class="content">
               <div class="header">Next Appointment</div>
               <div class="description">7 August 2020</div>
             </div>
           </a>
           <a class="item">
-            <i class="hand holding usd icon"></i>
+            <i class="large hand holding usd middle aligned icon"></i>
             <div class="content">
               <div class="header">Payments left</div>
               <div class="description">$40.00</div>
@@ -81,7 +85,7 @@
   <div class="ui container basic segment">
     <div id="patient_menu" class="ui massive secondary pointing menu">
       <a class="item active"> Treatments </a>
-      <a class="item"> Treatments </a>
+      <a class="item"> Visits </a>
     </div>
   </div>
   <div id="Treatments" class="ui tabcontent container basic segment">
@@ -273,13 +277,13 @@
                     </tr>
                   </tbody>
                 </table>
-                <div class="ui inverted dimmer treatment_details_loader">
-                  <div class="ui slow green double loader"></div>
-                </div>
+              </div>
+              <div class="ui inverted dimmer treatment_details_loader">
+                <div class="ui slow green double loader"></div>
+              </div>
 
-                <div class="ui active inverted dimmer">
-                  <div class="ui loader"></div>
-                </div>
+              <div class="ui active inverted dimmer">
+                <div class="ui loader"></div>
               </div>
             </div>
           </div>
@@ -320,6 +324,192 @@
     </div>
   </div>
 
+  <div
+    id="Visits"
+    class="ui tabcontent container basic segment"
+    style="font-family: Kanit"
+  >
+    <div class="ui grid">
+      <div class="eleven wide column">
+        <div class="ui clearing raised padded segment">
+          <div class="ui aligned grid">
+            <div class="right aligned row">
+              <div class="column">
+                <button class="ui compact icon button">
+                  <i class="angle left icon"></i>
+                </button>
+                <h3 class="ui header mb-0 mt-0" style="display: inline">
+                  2020
+                </h3>
+                <button class="ui compact icon button">
+                  <i class="angle right icon"></i>
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="ui twelve item secondary pointing menu">
+                <a class="item"> Jan </a>
+                <a class="item active"> Feb </a>
+                <a class="item"> Mar </a>
+                <a class="item"> Apr </a>
+                <a class="item"> May </a>
+                <a class="item"> June </a>
+                <a class="item"> July </a>
+                <a class="item"> Aug </a>
+                <a class="item"> Sept </a>
+                <a class="item"> Oct </a>
+                <a class="item"> Nov </a>
+                <a class="item"> Dec </a>
+              </div>
+            </div>
+            <div id="days" class="center aligned seven column row pt-0">
+              <div class="column">
+                <h4>MON</h4>
+              </div>
+              <div class="column">
+                <h4>TUE</h4>
+              </div>
+              <div class="column">
+                <h4>WED</h4>
+              </div>
+              <div class="column">
+                <h4>THU</h4>
+              </div>
+              <div class="column">
+                <h4>FRI</h4>
+              </div>
+              <div class="column">
+                <h4>SAT</h4>
+              </div>
+              <div class="column">
+                <h4>SUN</h4>
+              </div>
+            </div>
+            <div id="date" class="center aligned seven column row">
+              <div class="column">
+                <h5 class="previous_month_date">26</h5>
+              </div>
+              <div class="column">
+                <h5 class="previous_month_date">27</h5>
+              </div>
+              <div class="column">
+                <h5 class="previous_month_date">28</h5>
+              </div>
+              <div class="column">
+                <h5 class="previous_month_date">29</h5>
+              </div>
+              <div class="column">
+                <h5 class="previous_month_date">30</h5>
+              </div>
+              <div class="column">
+                <h5 class="previous_month_date">31</h5>
+              </div>
+              <div class="column">
+                <h5>1</h5>
+              </div>
+              <div class="column">
+                <h5>2</h5>
+              </div>
+              <div class="column">
+                <h5>3</h5>
+              </div>
+              <div class="column">
+                <h5>4</h5>
+              </div>
+              <div class="column">
+                <h5>5</h5>
+              </div>
+              <div class="column">
+                <h5>6</h5>
+              </div>
+              <div class="column">
+                <h5>7</h5>
+              </div>
+              <div class="column">
+                <h5>8</h5>
+              </div>
+              <div class="column">
+                <h5>9</h5>
+              </div>
+              <div class="column">
+                <h5>10</h5>
+              </div>
+              <div class="column">
+                <h5>11</h5>
+              </div>
+              <div class="column">
+                <h5>12</h5>
+              </div>
+              <div class="column">
+                <h5>13</h5>
+              </div>
+              <div class="column">
+                <h5>14</h5>
+              </div>
+              <div class="column">
+                <h5>15</h5>
+              </div>
+              <div class="column">
+                <h5>16</h5>
+              </div>
+              <div class="column">
+                <h5>17</h5>
+              </div>
+              <div class="column">
+                <h5>18</h5>
+              </div>
+              <div class="column">
+                <h5>19</h5>
+              </div>
+              <div class="column">
+                <h5>20</h5>
+              </div>
+              <div class="column">
+                <h5>21</h5>
+              </div>
+              <div class="column">
+                <h5>22</h5>
+              </div>
+              <div class="column">
+                <h5>23</h5>
+              </div>
+              <div class="column">
+                <h5>24</h5>
+              </div>
+              <div class="column">
+                <h5>25</h5>
+              </div>
+              <div class="column">
+                <h5>26</h5>
+              </div>
+              <div class="column">
+                <h5>27</h5>
+              </div>
+              <div class="column">
+                <h5>28</h5>
+              </div>
+              <div class="column">
+                <h5>29</h5>
+              </div>
+              <div class="column">
+                <h5>30</h5>
+              </div>
+              <div class="column">
+                <h5>1</h5>
+              </div>
+              <div class="column">
+                <h5>2</h5>
+              </div>
+              <div class="column">
+                <h5>3</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="five wide column"></div>
+    </div>
+  </div>
   <!-- custom script -->
   <script src="./js/patientDetails.js"></script>
 </div>

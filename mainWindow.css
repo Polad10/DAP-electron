@@ -18,6 +18,10 @@ a.item:hover {
   padding: 0px !important;
 }
 
+.pt-0 {
+  padding-top: 00px !important;
+}
+
 .pt-20 {
   padding-top: 20px !important;
 }
@@ -88,6 +92,23 @@ a.item:hover {
   width: 1px;
   background: #dddddd;
   position: absolute;
+}
+
+#days .column {
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+}
+#days h4 {
+  font-weight: bolder !important;
+  color: #aaaaaa;
+}
+
+#date .previous_month_date {
+  color: #aaaaaa;
+}
+#date .column {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
 }
 
 /* schedulerWindow */
