@@ -2,6 +2,10 @@ a.item:hover {
   background-color: rgba(34, 36, 38, 0.15) !important;
 }
 
+.hidden {
+  display: none;
+}
+
 .hide {
   visibility: hidden !important;
 }
@@ -130,10 +134,6 @@ a.item:hover {
 
 #date h5 {
   margin: 0px !important;
-}
-
-.blue_text {
-  color: rgb(32, 90, 178);
 }
 
 /* schedulerWindow */

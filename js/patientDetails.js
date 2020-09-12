@@ -32,6 +32,10 @@ function handleTreatmentListItemClick() {
   }, 1500);
 }
 
+$("#calendar_details .segment").dimmer({
+  on: "hover",
+});
+
 function initialize() {
   // Fill in the treatment name list
   setTimeout(function () {
