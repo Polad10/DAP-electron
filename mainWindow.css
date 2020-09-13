@@ -103,6 +103,12 @@ a.item:hover {
   width: 50% !important;
 }
 
+/* NewTreatment Modal */
+.scrollable {
+  overflow: auto;
+  height: 150px !important;
+}
+
 /* PatientDetails */
 .info_block::after {
   content: "";
