@@ -1,7 +1,5 @@
 <div id="treatment_modal" class="ui small modal">
-  <div class="header">
-    New Treatment
-  </div>
+  <div class="header">New Treatment</div>
   <div class="scrolling content">
     <form id="new_treatment_form" class="ui form">
       <div class="fields">
@@ -12,8 +10,7 @@
             class="ui fluid search selection dropdown"
             name="patient"
             placeholder="Patient Name"
-          >
-          </select>
+          ></select>
         </div>
         <div class="three wide field">
           <label> &nbsp;</label>
@@ -32,7 +29,7 @@
       <div
         id="add_patient_content"
         class="ui ml-50 mr-50"
-        style="display: none;"
+        style="display: none"
       >
         <div class="required field">
           <label>First Name</label>
@@ -84,12 +81,76 @@
         <label>Additional Info</label>
         <textarea rows="2"></textarea>
       </div>
+      <div class="ui section divider"></div>
+      <div class="inline fields">
+        <div class="ten wide field">
+          <label>Product Details</label>
+          <input type="text" placeholder="Product Name" />
+        </div>
+        <div class="four wide field">
+          <div class="ui right labeled input">
+            <label for="amount" class="ui label">$</label>
+            <input type="text" placeholder="Amount" id="amount" />
+            <div class="ui basic label">.00</div>
+          </div>
+        </div>
+        <div class="two wide field">
+          <button class="ui right floated blue button">Add</button>
+        </div>
+      </div>
+      <div class="container">
+        <div class="ui scrollable middle aligned divided ordered list">
+          <div class="item">
+            <div class="right floated content">
+              <div class="ui button">Add</div>
+            </div>
+            <div class="content">
+              <div class="header">Product Name</div>
+              <div class="description">$<b>100</b>.00</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="right floated content">
+              <div class="ui button">Add</div>
+            </div>
+            <div class="content">
+              <div class="header">Product Name</div>
+              <div class="description">$<b>100</b>.00</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="right floated content">
+              <div class="ui button">Add</div>
+            </div>
+            <div class="content">
+              <div class="header">Product Name</div>
+              <div class="description">$<b>100</b>.00</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="right floated content">
+              <div class="ui button">Add</div>
+            </div>
+            <div class="content">
+              <div class="header">Product Name</div>
+              <div class="description">$<b>100</b>.00</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="right floated content">
+              <div class="ui button">Add</div>
+            </div>
+            <div class="content">
+              <div class="header">Product Name</div>
+              <div class="description">$<b>100</b>.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </form>
   </div>
   <div class="actions">
-    <button class="ui black deny button">
-      Cancel
-    </button>
+    <button class="ui black deny button">Cancel</button>
     <button class="ui positive right labeled icon button" type="submit">
       Create
       <i class="checkmark icon"></i>
