@@ -1,11 +1,48 @@
-var pagination = require("./js/common/pagination").pagination;
+try { var pagination = require("./js/common/pagination").pagination; }
+catch (err) { }
+
+try { var Treatment = require("./db_models/treatment").Treatment; }
+catch (err) { }
+
+try { var Fuse = require('fuse.js'); }
+catch (err) { }
 
 var allTreatments;
 var currentTreatments;
 
 function initialize() {
-  $("#treatment_window_dropdown").dropdown({});
-  $("#treatment_status_dropdown").dropdown({});
+  $("#treatment_window_dropdown").dropdown({
+    values: [
+      {
+        name: 'Patient Name',
+        value: 'patient name',
+        selected: true
+      },
+      {
+        name: 'Diagnosis',
+        value: 'diagnosis'
+      }
+    ]
+  });
+
+  $("#treatment_filter_dropdown").dropdown({
+    values: [
+      {
+        name: 'All Treatments',
+        value: 'all treatments',
+        selected: true
+      },
+      {
+        name: 'Ongoing Treatments',
+        value: 'ongoing treatments'
+      },
+      {
+        name: 'Finished Treatments',
+        value: 'finished treatments'
+      }
+    ],
+    onChange: handleTreatmentFilterChange
+  });
 
   initializeTreatmentTable();
 
@@ -14,9 +51,9 @@ function initialize() {
 }
 
 function initializeTreatmentTable() {
-  let Treatment = require("./db_models/treatment").Treatment;
-
   Treatment.getAll((err, rows) => {
+    rows.forEach(r => r.full_name = `${r.first_name} ${r.last_name}`);
+
     allTreatments = rows;
     currentTreatments = rows;
 
@@ -34,25 +71,36 @@ function initializeTreatmentTable() {
 function updateTreatmentTable(treatments) {
   $("#treatment_table > tbody").empty();
 
-  for (const t of treatments) {
-    let color;
+  if (treatments.length === 0) 
+  {
+    $('#no_treatment').show();
+  }
+  else 
+  {
+    $('#no_treatment').hide();
 
-    if (t.paid === 0) {
-      color = "red";
-    } else if (t.paid >= t.total_price) {
-      color = "green";
-    } else {
-      color = "yellow";
+    for (const t of treatments) 
+    {
+      let color;
+  
+      if (t.paid === 0) {
+        color = "red";
+      } else if (t.paid >= t.total_price) {
+        color = "green";
+      } else {
+        color = "yellow";
+      }
+  
+      $("#treatment_table > tbody").append(
+        $("<tr>", { "data-id": t.id })
+          .addClass(color)
+          .append($("<td>").text(`${t.first_name} ${t.last_name}`))
+          .append($("<td>").text(t.diagnosis))
+          .append($("<td>").text(t.start_date))
+          .append($("<td>").text(t.end_date))
+          .append($("<td>").text(t.status))
+      );
     }
-
-    $("#treatment_table > tbody").append(
-      $("<tr>", { "data-id": t.id })
-        .addClass(color)
-        .append($("<td>").text(t.name))
-        .append($("<td>").text(`${t.first_name} ${t.last_name}`))
-        .append($("<td>").text(t.start_date))
-        .append($("<td>").text(t.diagnosis))
-    );
   }
 }
 
@@ -73,40 +121,58 @@ function handleTreatmentPageClick() {
 }
 
 function handleNewTreatmentBtnClick() {
-  $("#modal_content").load("./modals/new_treatment.html", () => {
-    $("#treatment_modal")
-      .modal({ onApprove: () => false, detachable: false })
-      .modal("show");
-  });
+  $("#modal_content").load("./modals/new_treatment.html");
 }
 
 function handleSearchTreatment() {
-  let patientName = $(this).val();
-  let names = patientName.split(" ").map((p) => p.toLowerCase());
+  const searchValue = $(this).val();
+  const searchOption = $('#treatment_window_dropdown').dropdown('get value');
+  const fuseOptions = {
+    shouldSort: false,
+    threshold: 0.3
+  };
 
-  if (names.length === 0) {
+  if(searchOption === 'diagnosis')
+  {
+    fuseOptions.keys = ['diagnosis'];
+  }
+  else
+  {
+    fuseOptions.keys = ['full_name'];
+  }
+
+  if(searchValue)
+  {
+
+    const fuse = new Fuse(allTreatments, fuseOptions);
+    const result = fuse.search(searchValue);
+    
+    currentTreatments = result.map(r => r.item);
+  }
+  else
+  {
     currentTreatments = allTreatments;
-  } else {
-    currentTreatments = allTreatments.filter((t) => {
-      if (names.length === 1) {
-        let name = names[0];
+  }
 
-        return (
-          t.first_name.toLowerCase().includes(name) ||
-          t.last_name.toLowerCase().includes(name)
-        );
-      } else if (names.length) {
-        let name_1 = names[0];
-        let name_2 = names[1];
+  updateTreatmentTable(currentTreatments.slice(0, pagination.pageSize));
 
-        return (
-          (t.first_name.toLowerCase().includes(name_1) &&
-            t.last_name.toLowerCase().includes(name_2)) ||
-          (t.first_name.toLowerCase().includes(name_2) &&
-            t.last_name.toLowerCase().includes(name_1))
-        );
-      }
-    });
+  let totalPages = pagination.getTotalPages(currentTreatments);
+  pagination.updatePaginationMenu("treatment_pagination", 1, totalPages);
+}
+
+function handleTreatmentFilterChange(value, text, choice)
+{
+  if(value === 'finished treatments')
+  {
+    currentTreatments = allTreatments.filter(t => t.status === 'Finished');
+  }
+  else if(value === 'ongoing treatments')
+  {
+    currentTreatments = allTreatments.filter(t => t.status === 'Ongoing');
+  }
+  else
+  {
+    currentTreatments = allTreatments;
   }
 
   updateTreatmentTable(currentTreatments.slice(0, pagination.pageSize));

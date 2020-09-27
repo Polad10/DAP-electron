@@ -14,11 +14,9 @@
             id="treatment_window_dropdown"
             class="ui basic floating dropdown button"
           >
-            <div class="text">All</div>
+            <div class="text"></div>
             <i class="dropdown icon"></i>
             <div class="menu">
-              <div class="item">Patient Name</div>
-              <div class="item">Diagnosis</div>
             </div>
           </div>
         </div>
@@ -76,20 +74,10 @@
     <i class="calendar alternate icon"></i>
     <div class="content">
       Show
-      <div id="treatment_status_dropdown" class="ui inline dropdown">
-        <div class="text">all treatment</div>
+      <div id="treatment_filter_dropdown" class="ui inline dropdown">
+        <div class="text"></div>
         <i class="dropdown icon"></i>
         <div class="menu">
-          <div class="header">Adjust time span</div>
-          <div class="active item" data-text="all treatments">
-            All Treatments
-          </div>
-          <div class="item" data-text="finished treatments">
-            Finished Treatments
-          </div>
-          <div class="item" data-text="ongoing treatments">
-            Ongoing Treatments
-          </div>
         </div>
       </div>
     </div>
@@ -100,15 +88,22 @@
   >
     <thead>
       <tr>
-        <th class="six wide">Patient Name</th>
-        <th class="three wide">Diagnosis</th>
+        <th class="three wide">Patient Name</th>
+        <th class="six wide">Diagnosis</th>
         <th class="two wide">Start Date</th>
         <th class="two wide">End Date</th>
-        <th class="five wide">Status</th>
+        <th class="three wide">Status</th>
       </tr>
     </thead>
     <tbody></tbody>
     <tfoot>
+      <tr id="no_treatment" style="display: none;">
+        <th colspan="5">
+          <p class="center aligned column">
+            There are no treatments yet . . .
+          </p>
+        </th>
+      </tr>
       <tr>
         <th colspan="5">
           <div

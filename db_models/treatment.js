@@ -55,7 +55,7 @@ class Treatment
         const db = require('./db').db.connect();
 
         db.serialize(() => {
-            let query = `SELECT t.id, t.start_date, t.diagnosis, p.first_name, p.last_name, 
+            let query = `SELECT t.*, p.first_name, p.last_name, 
                             TOTAL(pr.total_price) as total_price, TOTAL(pa.amount) as paid
                         FROM treatment t
                         INNER JOIN patient p

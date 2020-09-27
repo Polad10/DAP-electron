@@ -40,6 +40,10 @@
           <input name="last_name" type="text" placeholder="Last Name" />
         </div>
         <div class="field">
+          <label>City</label>
+          <input name="city" type="text" placeholder="City" />
+        </div>
+        <div class="required field">
           <label>Date of Birth</label>
           <div id="dob_calendar" class="ui calendar">
             <div class="ui input left icon">
@@ -52,106 +56,70 @@
           <label>Phone Number</label>
           <input name="phone_nr" type="text" placeholder="Phone Number" />
         </div>
+        <div class="field">
+          <label>Additional Info</label>
+          <textarea name="patient_extra_info" rows="2"></textarea>
+        </div>
       </div>
       <div class="mt-20 fields">
         <div class="required field">
           <label>Start Date</label>
-          <div class="ui calendar">
+          <div id="start_date_calendar" class="ui calendar">
             <div class="ui input left icon">
               <i class="calendar icon"></i>
-              <input name="date" type="text" placeholder="Choose the date" />
+              <input name="start_date" type="text" placeholder="Choose the date" />
             </div>
           </div>
         </div>
-        <div class="required field">
+        <div class="field">
           <label>End Date</label>
-          <div class="ui calendar">
+          <div id="end_date_calendar" class="ui calendar">
             <div class="ui input left icon">
               <i class="calendar icon"></i>
-              <input name="date" type="text" placeholder="Choose the date" />
+              <input name="end_date" type="text" placeholder="Choose the date" />
             </div>
           </div>
         </div>
       </div>
       <div class="required field">
         <label>Diagnosis</label>
-        <textarea rows="2"></textarea>
+        <textarea name="diagnosis" rows="2"></textarea>
       </div>
       <div class="field">
         <label>Additional Info</label>
-        <textarea rows="2"></textarea>
+        <textarea name="extra_info" rows="2"></textarea>
       </div>
       <div class="ui section divider"></div>
-      <div class="inline fields">
-        <div class="ten wide field">
-          <label>Product Details</label>
-          <input type="text" placeholder="Product Name" />
+      <div class="fields">
+        <div class="eight wide field">
+          <label>Product Name</label>
+          <input name="product_name" type="text" placeholder="Product Name" />
         </div>
         <div class="four wide field">
+          <label>Price</label>
           <div class="ui right labeled input">
-            <label for="amount" class="ui label">$</label>
-            <input type="text" placeholder="Amount" id="amount" />
-            <div class="ui basic label">.00</div>
+            <label for="amount" class="ui label">₼</label>
+            <input name="amount" type="number" min="0" step="any" placeholder="0.00"/>
           </div>
         </div>
         <div class="two wide field">
-          <button class="ui right floated blue button">Add</button>
+          <label>Quantity</label>
+          <div class="ui right labeled input">
+            <input name="quantity" type="number" min="1" step="1" placeholder="1"/>
+          </div>
+        </div>
+        <div class="two wide field">
+          <label> &nbsp;</label>
+          <button id="add_product_btn" class="ui right floated blue button" type="button">Add</button>
         </div>
       </div>
-      <div class="container">
-        <div class="ui scrollable middle aligned divided ordered list">
-          <div class="item">
-            <div class="right floated content">
-              <div class="ui button">Add</div>
-            </div>
-            <div class="content">
-              <div class="header">Product Name</div>
-              <div class="description">$<b>100</b>.00</div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="right floated content">
-              <div class="ui button">Add</div>
-            </div>
-            <div class="content">
-              <div class="header">Product Name</div>
-              <div class="description">$<b>100</b>.00</div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="right floated content">
-              <div class="ui button">Add</div>
-            </div>
-            <div class="content">
-              <div class="header">Product Name</div>
-              <div class="description">$<b>100</b>.00</div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="right floated content">
-              <div class="ui button">Add</div>
-            </div>
-            <div class="content">
-              <div class="header">Product Name</div>
-              <div class="description">$<b>100</b>.00</div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="right floated content">
-              <div class="ui button">Add</div>
-            </div>
-            <div class="content">
-              <div class="header">Product Name</div>
-              <div class="description">$<b>100</b>.00</div>
-            </div>
-          </div>
-        </div>
+      <div id="products" class="ui scrollable middle aligned divided ordered list">
       </div>
     </form>
   </div>
   <div class="actions">
     <button class="ui black deny button">Cancel</button>
-    <button class="ui positive right labeled icon button" type="submit">
+    <button class="ui positive right labeled icon button" type="submit" form="new_treatment_form">
       Create
       <i class="checkmark icon"></i>
     </button>
