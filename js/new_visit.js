@@ -229,7 +229,7 @@ function CreatePatient(fields, callback) {
     let firstName = fields.first_name;
     let lastName = fields.last_name;
     let city = fields.city;
-    let patientExtra = fields.extra_info;
+    let patientExtra = fields.patient_extra_info;
     let dob = new Date(fields.dob);
     let phoneNr = fields.phone_nr;
 
