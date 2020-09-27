@@ -15,7 +15,10 @@ class Visit
                         ON treatment.patient_id = patient.id
                         ORDER BY visit.date DESC, visit.time DESC`;
 
-            db.all(query, callback)
+            db.all(query, (err, rows) => {
+                rows = rows ? rows : [];
+                callback(err, rows);
+            });
 
             db.close();
         });

@@ -14,7 +14,10 @@ class Payment
                         INNER JOIN patient
                         ON treatment.patient_id = patient.id`;
 
-            db.all(query, callback)
+            db.all(query, (err, rows) => {
+                rows = rows ? rows : [];
+                callback(err, rows);
+            });
 
             db.close();
         });
