@@ -1,20 +1,17 @@
-try
-{
-  var Patient = require('./db_models/patient').Patient;
-}
+try { var Patient = require('./db_models/patient').Patient; }
 catch(ex) {}
 
-try
-{
-  var Treatment = require('./db_models/treatment').Treatment;
-}
+try { var Treatment = require('./db_models/treatment').Treatment; }
 catch(ex) {}
 
-try
-{
-  var Appointment = require('./db_models/appointment').Appointment;
-}
+try { var Appointment = require('./db_models/appointment').Appointment; }
 catch(ex) {}
+
+try { var Product = require('./db_models/product').Product }
+catch (ex) {}
+
+try { var validation = require('./js/common/validation').validation }
+catch (ex) {}
 
 var patientDropdown = undefined;
 var treatmentDropdown = undefined;
@@ -35,9 +32,6 @@ function handleAddTreatmentBtnClick()
 function initialize()
 {
   $('#appointment_modal').modal({ onApprove: () => false, detachable: false }).modal('show');
-  
-  $("#new_patient_btn").on("click", handleAddPatientBtnClick);
-  $("#new_treatment_btn").on("click", handleAddTreatmentBtnClick);
 
   $('#dob_calendar').calendar({type: 'date', startMode: 'year'});
   $('#start_date_calendar').calendar({type: 'date'});
@@ -65,6 +59,11 @@ function initialize()
 
   SetNewPatientForm(false);
   SetNewTreatmentForm(false);
+
+  $("#new_patient_btn").on("click", handleAddPatientBtnClick);
+  $("#new_treatment_btn").on("click", handleAddTreatmentBtnClick);
+  $('#add_product_btn').on('click', handleAddProductBtnClick);
+  $('#products').on('click', 'button[class~=remove]', handleRemoveProductBtnClick);
 }
 
 function initializePatientDropdown()
@@ -109,33 +108,140 @@ function handlePatientDropdownChange(value, text, choice)
   initializeTreatmentDropdown(value);
 }
 
+function handleAddProductBtnClick() {
+  if(validateProductFields())
+  {
+    let productName = $('input[name="product_name"]').val();
+    let amount = Number($('input[name="amount"]').val());
+    let quantity = Number($('input[name="quantity"]').val());
+    let totalAmount = Number((amount * quantity).toFixed(2));
+
+    $('#products')
+      .append($('<div>', {'class': 'item'})
+        .append($('<div>', {'class': 'right floated content'})
+          .append($('<button>', {'class': 'remove ui compact tertiary icon button', 'type': 'button'})
+            .append($('<i>', {'class': 'red window close outline large icon'}))))
+        .append($('<div>', {'class': 'content product_row'})
+          .data('product_name', productName)
+          .data('total_amount', totalAmount)
+          .data('quantity', quantity)
+          .append($('<div>', {'class': 'header'}).text(`${productName}`)
+            .append($('<i>').text(` (x ${quantity})`)))
+          .append($('<div>', {'class': 'description'})
+            .append($('<b>')).text(`₼ ${totalAmount}`)))
+      );
+
+      $('input[name="product_name"]').val('');
+      $('input[name="amount"]').val('');
+      $('input[name="quantity"]').val('');
+  }
+}
+
+function handleRemoveProductBtnClick(e)
+{
+  $(this).closest('.item').remove();
+}
+
+function validateProductFields()
+{
+  return validateProductNameField() & validateAmountField() & validateQuantityField();
+}
+
+function validateProductNameField()
+{
+  let productNameField = $('input[name="product_name"]');
+
+  if(validation.validateNonEmpty(productNameField))
+  {
+    fieldError(productNameField, false);
+
+    return true;
+  }
+
+  fieldError(productNameField, true);
+
+  return false;
+}
+
+function validateAmountField()
+{
+  let amountField = $('input[name="amount"]');
+
+  if(validation.validateNumber(amountField, 0))
+  {
+    fieldError(amountField, false);
+
+    return true;
+  }
+  
+  fieldError(amountField, true);
+
+  return false;
+}
+
+function validateQuantityField()
+{
+  let quantityField = $('input[name="quantity"]');
+
+  if(validation.validateNumber(quantityField, 1))
+  {
+    fieldError(quantityField, false);
+
+    return true;
+  }
+
+  fieldError(quantityField, true);
+
+  return false;
+}
+
+function fieldError(field, state)
+{
+  if(state)
+  {
+    field.closest('.field').addClass('error');
+  }
+  else
+  {
+    field.closest('.field').removeClass('error');
+  }
+}
+
 function handleSubmit(e, fields)
 {
   e.preventDefault();
 
-  subsciberCallback = function(err) {
-    notifySubscibers();
+  let appointmentCallback = function(err) {
+    notifySubscribers();
+  }
+
+  let treatmentCallback = function(err) {
+    $('#products .product_row').each((index, row) => {
+      let productName = $(row).data('product_name');
+      let totalAmount = $(row).data('total_amount');
+      let quantity = $(row).data('quantity');
+  
+      CreateProduct(this.lastID, productName, totalAmount, quantity);
+    });
+
+    CreateAppointment(this.lastID, fields, appointmentCallback);
   }
 
   if(fields.patient)
   {
     if(fields.treatment)
     {
-      CreateAppointment(fields.treatment, fields, subsciberCallback);
+      CreateAppointment(fields.treatment, fields, appointmentCallback);
     }
     else
     {
-      CreateTreatment(fields.patient, fields, function(err) {
-        CreateAppointment(this.lastID, fields, subsciberCallback);
-      });
+      CreateTreatment(fields.patient, fields, treatmentCallback);
     }
   }
   else
   {
     CreatePatient(fields, function(err) {
-      CreateTreatment(this.lastID, fields, function(err) {
-        CreateAppointment(this.lastID, fields, subsciberCallback);
-      });
+      CreateTreatment(this.lastID, fields, treatmentCallback);
     });
   }
 
@@ -219,6 +325,11 @@ function CreatePatient(fields, callback)
   Patient.insert(firstName, lastName, city, patientExtra, dob, phoneNr, callback);
 }
 
+function CreateProduct(treatmentID, name, totalAmount, quantity)
+{
+  Product.insert(name, totalAmount, quantity, treatmentID);
+}
+
 function subscribeToAppointmentSubmit(onSubmit)
 {
   if(onSubmit)
@@ -227,7 +338,7 @@ function subscribeToAppointmentSubmit(onSubmit)
   }
 }
 
-function notifySubscibers()
+function notifySubscribers()
 {
   for(let i = 0; i < submitSubscribers.length; i++)
   {
