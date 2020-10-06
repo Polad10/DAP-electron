@@ -10,7 +10,7 @@
   "author": "Amelia Kezia G., Polad Samadzade",
   "license": "MIT",
   "dependencies": {
-    "electron": "^8.5.0",
+    "electron": "^8.5.1",
     "fuse.js": "^6.4.1",
     "sqlite3": "^4.2.0"
   },
