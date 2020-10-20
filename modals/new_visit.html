@@ -26,40 +26,7 @@
           </div>
         </div>
       </div>
-      <div
-        id="add_patient_content"
-        style="margin-left: 2%; display: none"
-      >
-        <div class="required field">
-          <label>First Name</label>
-          <input name="first_name" type="text" placeholder="First Name" />
-        </div>
-        <div class="required field">
-          <label>Last Name</label>
-          <input name="last_name" type="text" placeholder="Last Name" />
-        </div>
-        <div class="field">
-          <label>City</label>
-          <input name="city" type="text" placeholder="City" />
-        </div>
-        <div class="required field">
-          <label>Date of Birth</label>
-          <div id="dob_calendar" class="ui calendar">
-            <div class="ui input left icon">
-              <i class="calendar alternate outline icon"></i>
-              <input name="dob" type="text" placeholder="Date of Birth" />
-            </div>
-          </div>
-        </div>
-        <div class="field">
-          <label>Phone Number</label>
-          <input name="phone_nr" type="text" placeholder="Phone Number" />
-        </div>
-        <div class="field">
-          <label>Additional Info</label>
-          <textarea name="patient_extra_info" rows="2"></textarea>
-        </div>
-      </div>
+      <div id="add_patient_content" style="margin-left: 2%; display: none"></div>
       <div class="mt-20 fields">
         <div class="thirteen wide required field">
           <label>Select treatment</label>
@@ -85,73 +52,7 @@
           </div>
         </div>
       </div>
-      <div
-        id="add_treatment_content"
-        style="margin-left: 2%; display: none"
-      >
-        <div class="fields">
-          <div class="required field">
-            <label>Start Date</label>
-            <div id="start_date_calendar" class="ui calendar">
-              <div class="ui input left icon">
-                <i class="calendar icon"></i>
-                <input
-                  name="start_date"
-                  type="text"
-                  placeholder="Choose the date"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="field">
-            <label>End Date</label>
-            <div id="end_date_calendar" class="ui calendar">
-              <div class="ui input left icon">
-                <i class="calendar icon"></i>
-                <input
-                  name="end_date"
-                  type="text"
-                  placeholder="Choose the date"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="required field">
-          <label>Diagnosis</label>
-          <textarea name="diagnosis" rows="2"></textarea>
-        </div>
-        <div class="field">
-          <label>Additional Info</label>
-          <textarea name="extra_info" rows="2"></textarea>
-        </div>
-        <div class="ui section divider"></div>
-        <div class="fields">
-          <div class="six wide field">
-            <label>Product Name</label>
-            <input name="product_name" type="text" placeholder="Product Name" />
-          </div>
-          <div class="four wide field">
-            <label>Price</label>
-            <div class="ui right labeled input">
-              <label for="amount" class="ui label">₼</label>
-              <input name="amount" type="number" min="0" step="any" placeholder="0.00"/>
-            </div>
-          </div>
-          <div class="two wide field">
-            <label>Quantity</label>
-            <div class="ui right labeled input">
-              <input name="quantity" type="number" min="1" step="1" placeholder="1"/>
-            </div>
-          </div>
-          <div class="two wide field">
-            <label> &nbsp;</label>
-            <button id="add_product_btn" class="ui right floated blue button" type="button">Add</button>
-          </div>
-        </div>
-        <div id="products" class="ui scrollable middle aligned divided ordered list">
-        </div>
-      </div>
+      <div id="add_treatment_content"style="margin-left: 2%; display: none"></div>
       <div class="mt-20 field">
         <label>Actions</label>
         <textarea name="actions" rows="2"></textarea>
