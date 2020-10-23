@@ -5,6 +5,7 @@ try { var field_manager = require('./js/common/field_manager').field_manager; }
 catch(ex) {}
 
 var patientDropdown = undefined;
+var submitSubscribers = [];
 
 function initialize() {
   $('#add_patient_content').load('./modals/static/patient_fields.html', () => {
@@ -39,6 +40,8 @@ function handleSubmit(e, fields) {
   
       field_manager.CreateProduct(this.lastID, productName, totalAmount, quantity);
     });
+
+    notifySubscribers();
   }
 
   if(fields.patient)
@@ -101,6 +104,22 @@ function SetFieldState(field, state) {
 function handleAddPatientBtnClick() {
   SetNewPatientForm(!$('#patient_dropdown').prop('disabled'));
   $("#add_patient_content").transition("slide", "500ms");
+}
+
+function subscribeToTreatmentSubmit(onSubmit)
+{
+    if(onSubmit)
+    {
+        submitSubscribers.push(onSubmit);
+    }
+}
+
+function notifySubscribers()
+{
+    for(let i = 0; i < submitSubscribers.length; i++)
+    {
+      submitSubscribers[i]();
+    }
 }
 
 initialize();

@@ -121,7 +121,11 @@ function handleTreatmentPageClick() {
 }
 
 function handleNewTreatmentBtnClick() {
-  $("#modal_content").load("./modals/new_treatment.html");
+  $("#modal_content").load("./modals/new_treatment.html", () => {
+    subscribeToTreatmentSubmit(() => {
+      initializeTreatmentTable();
+    });
+  });
 }
 
 function handleSearchTreatment() {
