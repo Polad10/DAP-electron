@@ -1,10 +1,10 @@
-try { var Treatment = require('./db_models/treatment').Treatment }
+try { var Treatment = require('../../db_models/treatment').Treatment }
 catch (ex) { }
 
-try { var Product = require('./db_models/product').Product }
+try { var Product = require('../../db_models/product').Product }
 catch (ex) { }
 
-try { var Patient = require('../db_models/patient').Patient; }
+try { var Patient = require('../../db_models/patient').Patient; }
 catch(ex) {}
 
 function CreateTreatment(patientID, fields, callback) {
