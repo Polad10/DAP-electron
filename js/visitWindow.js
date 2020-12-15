@@ -11,11 +11,14 @@ var allVisits;
 var currentVisits;
 
 function initialize()
-{
+{ 
   initializeVisitTable();
 
   $('#new_visit_btn').on('click', handleNewVisitBtnClick);
-  $('#search_visit').on('input', handleSearchVisit);
+  $('#search_visit').on('input', handleFilter);
+  $('#payment_visits_cb').checkbox({
+    onChange: handleFilter
+  });
 }
 
 function initializeVisitTable() {
@@ -68,35 +71,6 @@ function handleNewVisitBtnClick()
   });
 }
 
-function handleSearchVisit()
-{
-  const searchValue = $(this).val();
-
-  const fuseOptions = {
-    shouldSort: false,
-    threshold: 0.3,
-    keys: ['full_name']
-  };
-
-  if(searchValue)
-  {
-
-    const fuse = new Fuse(allVisits, fuseOptions);
-    const result = fuse.search(searchValue);
-    
-    currentVisits = result.map(r => r.item);
-  }
-  else
-  {
-    currentVisits = allVisits;
-  }
-
-  updateVisitTable(currentVisits.slice(0, pagination.pageSize));
-
-  let totalPages = pagination.getTotalPages(currentVisits);
-  pagination.updatePaginationMenu("visit_pagination", 1, totalPages);
-}
-
 function handleVisitTableClick()
 {
   let name = $(this).data('name');
@@ -116,6 +90,56 @@ function handleVisitPageClick()
   let visits = pagination.paginate($(this), "visit_pagination", currentVisits);
 
   updateVisitTable(visits);
+}
+
+function handleFilter()
+{
+  let patientName = $('#search_visit').val();
+  let paymentVisitsChecked = $('#payment_visits_cb').checkbox('is checked');
+
+  currentVisits = filterVisitsByPatientName(patientName, allVisits);
+  currentVisits = filterVisitsWithPayment(paymentVisitsChecked, currentVisits);
+
+  updateVisitTable(currentVisits.slice(0, pagination.pageSize));
+
+  let totalPages = pagination.getTotalPages(currentVisits);
+  pagination.updatePaginationMenu("visit_pagination", 1, totalPages);
+}
+
+function filterVisitsByPatientName(patientName, visits)
+{
+  let filteredVisits;
+
+  const fuseOptions = {
+    shouldSort: false,
+    threshold: 0.3,
+    keys: ['full_name']
+  };
+
+  if(patientName)
+  {
+
+    const fuse = new Fuse(visits, fuseOptions);
+    const result = fuse.search(patientName);
+    
+    filteredVisits = result.map(r => r.item);
+  }
+  else
+  {
+    filteredVisits = visits;
+  }
+  
+  return filteredVisits;
+}
+
+function filterVisitsWithPayment(check, visits)
+{
+  if(check)
+  {
+    return visits.filter(v => v.amount);
+  }
+
+  return visits;
 }
 
 initialize();

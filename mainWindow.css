@@ -82,6 +82,10 @@ a.item:hover {
   margin-left: 50px !important;
 }
 
+.mr-0 {
+  margin-right: 0px !important;
+}
+
 .mr-50 {
   margin-right: 50px !important;
 }
