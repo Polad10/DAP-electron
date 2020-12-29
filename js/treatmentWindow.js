@@ -41,13 +41,13 @@ function initialize() {
         value: 'finished treatments'
       }
     ],
-    onChange: handleTreatmentFilterChange
+    onChange: handleFilter
   });
 
   initializeTreatmentTable();
 
   $("#new_treatment_btn").on("click", handleNewTreatmentBtnClick);
-  $("#search_treatment").on("input", handleSearchTreatment);
+  $("#search_treatment").on("input", handleFilter);
 }
 
 function initializeTreatmentTable() {
@@ -71,18 +71,15 @@ function initializeTreatmentTable() {
 function updateTreatmentTable(treatments) {
   $("#treatment_table > tbody").empty();
 
-  if (treatments.length === 0) 
-  {
+  if (treatments.length === 0) {
     $('#no_treatment').show();
   }
-  else 
-  {
+  else {
     $('#no_treatment').hide();
 
-    for (const t of treatments) 
-    {
+    for (const t of treatments) {
       let color;
-  
+
       if (t.paid === 0) {
         color = "red";
       } else if (t.paid >= t.total_price) {
@@ -90,7 +87,7 @@ function updateTreatmentTable(treatments) {
       } else {
         color = "yellow";
       }
-  
+
       $("#treatment_table > tbody").append(
         $("<tr>", { "data-id": t.id })
           .addClass(color)
@@ -128,61 +125,63 @@ function handleNewTreatmentBtnClick() {
   });
 }
 
-function handleSearchTreatment() {
-  const searchValue = $(this).val();
+function handleFilter() {
+  const searchValue = $('#search_treatment').val();
   const searchOption = $('#treatment_window_dropdown').dropdown('get value');
-  const fuseOptions = {
-    shouldSort: false,
-    threshold: 0.3
-  };
+  const treatmentFilterOption = $('#treatment_filter_dropdown').dropdown('get value');
 
-  if(searchOption === 'diagnosis')
-  {
-    fuseOptions.keys = ['diagnosis'];
-  }
-  else
-  {
-    fuseOptions.keys = ['full_name'];
-  }
+  currentTreatments = filterTreatmentsByName(searchValue, searchOption, allTreatments);
+  currentTreatments = filterTreatmentsByStatus(treatmentFilterOption, currentTreatments)
 
-  if(searchValue)
-  {
-
-    const fuse = new Fuse(allTreatments, fuseOptions);
-    const result = fuse.search(searchValue);
-    
-    currentTreatments = result.map(r => r.item);
-  }
-  else
-  {
-    currentTreatments = allTreatments;
-  }
-
-  updateTreatmentTable(currentTreatments.slice(0, pagination.pageSize));
+    updateTreatmentTable(currentTreatments.slice(0, pagination.pageSize));
 
   let totalPages = pagination.getTotalPages(currentTreatments);
   pagination.updatePaginationMenu("treatment_pagination", 1, totalPages);
 }
 
-function handleTreatmentFilterChange(value, text, choice)
-{
-  if(value === 'finished treatments')
-  {
-    currentTreatments = allTreatments.filter(t => t.status === 'Finished');
+function filterTreatmentsByName(searchValue, searchOption, treatments) {
+  let filteredTreatments;
+
+  const fuseOptions = {
+    shouldSort: false,
+    threshold: 0.3
+  };
+
+  if (searchOption === 'diagnosis') {
+    fuseOptions.keys = ['diagnosis'];
   }
-  else if(value === 'ongoing treatments')
-  {
-    currentTreatments = allTreatments.filter(t => t.status === 'Ongoing');
-  }
-  else
-  {
-    currentTreatments = allTreatments;
+  else {
+    fuseOptions.keys = ['full_name'];
   }
 
-  updateTreatmentTable(currentTreatments.slice(0, pagination.pageSize));
+  if (searchValue) {
 
-  let totalPages = pagination.getTotalPages(currentTreatments);
-  pagination.updatePaginationMenu("treatment_pagination", 1, totalPages);
+    const fuse = new Fuse(treatments, fuseOptions);
+    const result = fuse.search(searchValue);
+
+    filteredTreatments = result.map(r => r.item);
+  }
+  else {
+    filteredTreatments = treatments;
+  }
+
+  return filteredTreatments;
+}
+
+function filterTreatmentsByStatus(treatmentFilterOption, treatments) {
+  let filteredTreatments;
+
+  if (treatmentFilterOption === 'finished treatments') {
+    filteredTreatments = treatments.filter(t => t.status === 'Finished');
+  }
+  else if (treatmentFilterOption === 'ongoing treatments') {
+    filteredTreatments = treatments.filter(t => t.status === 'Ongoing');
+  }
+  else {
+    filteredTreatments = treatments;
+  }
+
+  return filteredTreatments;
 }
 
 initialize();
